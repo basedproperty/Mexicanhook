@@ -4796,13 +4796,14 @@ Peek = false
 local exploits = rage:Sector("exploits", "Left")      
 exploits:Element("ToggleKeybind", "triple tap")      
 exploits:Element("ToggleKeybind", "kill all")     
+exploits:Element("Slider", "quick peek vertical pos", {min = 50, max = 500, default = 200})  
 exploits:Element("ToggleKeybind", "quick peek",{},function(tbl)
 	if tbl.Toggle and tbl.Active and LocalPlayer.Character and Peek == false then
 		Peek = true
-		LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,200,0)
+		LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,values.rage.exploits["quick peek vertical pos"].Slider,0)
 		wait(0.2)
 		Peek = false
-		LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame - Vector3.new(0,200,0)
+		LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame - Vector3.new(0,values.rage.exploits["quick peek vertical pos"].Slider,0)
 	elseif  not tbl.Active then
 		Peek = false
 	end
