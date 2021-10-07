@@ -1,3 +1,4 @@
+print("mexicanhook on top")
 getgenv().values = {}       
 local library = {}      
 local Signal = loadstring(game:HttpGet("https://raw.githubusercontent.com/Quenty/NevermoreEngine/version2/Modules/Shared/Events/Signal.lua"))()      
