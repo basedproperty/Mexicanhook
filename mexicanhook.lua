@@ -4571,7 +4571,7 @@ end
 
 RunService.RenderStepped:Wait()      
 
-local gui = library:New("mexicanhook rc1")      
+local gui = library:New("mexicanhook rc2")      
 local legit = gui:Tab("legit")      
 local rage = gui:Tab("rage")      
 local visuals = gui:Tab("visuals")      
@@ -4728,7 +4728,7 @@ antiaim:Element("Slider", "yaw offset", {min = -180, max = 180, default = 0})
 antiaim:Element("Toggle", "jitter")      
 antiaim:Element("Slider", "jitter offset", {min = -180, max = 180, default = 0})      
 antiaim:Element("Dropdown", "pitch", {options = {"none", "up", "down", "zero", "180", "random","huge"}})      
-antiaim:Element("Toggle", "extend pitch")      
+antiaim:Element("Toggle", "extend pitch")    
 antiaim:Element("Dropdown", "body roll", {options = {"off", "180"}})      
 antiaim:Element("Slider", "spin speed", {min = 1, max = 48, default = 4})      
 
@@ -4797,18 +4797,30 @@ Peek = false
 local exploits = rage:Sector("exploits", "Left")      
 exploits:Element("ToggleKeybind", "triple tap")      
 exploits:Element("ToggleKeybind", "kill all")     
-exploits:Element("Slider", "quick peek vertical pos", {min = 50, max = 500, default = 200})  
+exploits:Element("Slider", "quick peek vertical pos", {min = -500, max = 500, default = 200})  
 exploits:Element("ToggleKeybind", "quick peek",{},function(tbl)
 	if tbl.Toggle and tbl.Active and LocalPlayer.Character and Peek == false then
-		Peek = true
-		LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,values.rage.exploits["quick peek vertical pos"].Slider,0)
-		wait(0.2)
-		Peek = false
-		LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame - Vector3.new(0,values.rage.exploits["quick peek vertical pos"].Slider,0)
+		if values.rage.exploits["loop peek"].Toggle == true and values.rage.exploits["quick peek"].Active == true then
+			while values.rage.exploits["loop peek"].Toggle == true do
+				Peek = true
+				LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,values.rage.exploits["quick peek vertical pos"].Slider,0)
+				wait(0.2)
+				Peek = false
+				LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame - Vector3.new(0,values.rage.exploits["quick peek vertical pos"].Slider,0)
+				wait(0.2)
+			end
+		else
+			Peek = true
+			LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,values.rage.exploits["quick peek vertical pos"].Slider,0)
+			wait(0.2)
+			Peek = false
+			LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame - Vector3.new(0,values.rage.exploits["quick peek vertical pos"].Slider,0)
+		end
 	elseif  not tbl.Active then
 		Peek = false
 	end
 end)  
+exploits:Element("Toggle","loop peek")
 
 
 local players = visuals:Sector("players", "Left")      
@@ -6276,7 +6288,7 @@ RunService.RenderStepped:Connect(function(step)
 			if values.rage.angles["body roll"].Dropdown == "180" then      
 				Root.CFrame = Root.CFrame * CFAngles(values.rage.angles["body roll"].Dropdown == "180" and RAD(180) or 0, 1, 0)      
 				LocalPlayer.Character.Humanoid.HipHeight = 4      
-			else      
+            else
 				LocalPlayer.Character.Humanoid.HipHeight = 2      
 			end      
 
@@ -6707,7 +6719,9 @@ mt.__index = function(self, key)
 	return oldIndex(self, key)      
 end      
 
-local perf__ = LocalPlayer.PlayerGui.Performance.Perf      
+if LocalPlayer.PlayerGui:FindFirstChild("Performance") then
+	local perf__ = LocalPlayer.PlayerGui.Performance.Perf      
+end
 
 mt.__newindex = function(self, i, v)      
 	if self:IsA("Humanoid") and i == "JumpPower" and not checkcaller() then      
