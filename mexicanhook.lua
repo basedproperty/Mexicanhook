@@ -4571,7 +4571,7 @@ end
 
 RunService.RenderStepped:Wait()      
 
-local gui = library:New("mexicanhook rc2")      
+local gui = library:New("mexicanhook 1.0")      
 local legit = gui:Tab("legit")      
 local rage = gui:Tab("rage")      
 local visuals = gui:Tab("visuals")      
@@ -4833,12 +4833,13 @@ players:Element("ToggleColor", "weapon icon", {default = {Color = COL3RGB(255,25
 players:Element("Jumbobox", "indicators", {options = {"armor"}})      
 players:Element("Jumbobox", "outlines", {options = {"drawings", "text"}, default = {Jumbobox = {"drawings", "text"}}})      
 players:Element("Dropdown", "font", {options = {"Plex", "Monospace", "System", "UI"}})      
-players:Element("Slider", "size", {min = 12, max = 16, default = 13})      
+players:Element("Slider", "size", {min = 12, max = 16, default = 13}) 
 players:Element("ToggleColor", "chams", nil, function(tbl)      
 	for _,Player in pairs(Players:GetPlayers()) do      
 		if Player.Character then      
 			for _2,Obj in pairs(Player.Character:GetDescendants()) do      
-				if Obj.Name == "VisibleCham" or Obj.Name == "WallCham" then      
+				if Obj.Name == "VisibleCham" or Obj.Name == "WallCham" then 
+					Obj.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle       
 					if tbl.Toggle then      
 						if values.visuals.players.teammates.Toggle or Player.Team ~= LocalPlayer.Team then      
 							Obj.Visible = true      
@@ -4853,7 +4854,8 @@ players:Element("ToggleColor", "chams", nil, function(tbl)
 			end      
 		end      
 	end      
-end)      
+end)  
+players:Element("Toggle","invisible chams")         
 
 local effects = visuals:Sector("effects", "Right")      
 effects:Element("ToggleTrans", "weapon chams", {default = {Color = COL3RGB(255,255,255), Transparency = 0}}, function(tbl)      
@@ -5247,7 +5249,7 @@ client:Element("Toggle", "infinite cash", nil, function(tbl)
 end)      
 client:Element("Toggle", "infinite crouch")      
 client:Element("Jumbobox", "damage bypass", {options = {"fire", "fall"}})      
-client:Element("Jumbobox", "gun modifiers", {options = {"recoil", "spread", "reload", "equip", "ammo", "automatic", "penetration", "firerate"}})      
+client:Element("Jumbobox", "gun modifiers", {options = {"recoil", "spread", "reload", "equip", "ammo", "automatic", "penetration", "firerate"}})     
 client:Element("Toggle", "remove killers", {}, function(tbl)      
 	if tbl.Toggle then      
 		if workspace:FindFirstChild("Map") and workspace:FindFirstChild("Map"):FindFirstChild("Killers") then      
@@ -5292,7 +5294,7 @@ local chat = misc:Sector("chat", "Left")
 chat:Element("Toggle", "chat spam", nil, function(tbl)      
 	if tbl.Toggle then      
 		while values.misc.chat["chat spam"].Toggle do      
-			game:GetService("ReplicatedStorage").Events.PlayerChatted:FireServer(values.misc.chat.type.Dropdown == "standard" and "hi" or "counter blox cartel tramposo llamado mexicanhook", false, "Innocent", false, true)      
+			game:GetService("ReplicatedStorage").Events.PlayerChatted:FireServer(values.misc.chat.type.Dropdown == "standard" and "hi" or "mexicanhook > all! https://discord.gg/Wb9fKDYZjT", false, "Innocent", false, true)      
 			wait(values.misc.chat["speed (ms)"].Slider/1000)      
 			      
 		end      
@@ -7320,18 +7322,18 @@ Players.PlayerAdded:Connect(function(Player)
 				if obj:IsA("BasePart") and Player ~= LocalPlayer and obj.Name ~= "HumanoidRootPart" and obj.Name ~= "Head" and obj.Name ~= "BackC4" and obj.Name ~= "HeadHB" then      
 					local VisibleCham = INST("BoxHandleAdornment")      
 					VisibleCham.Name = "VisibleCham"      
-					VisibleCham.AlwaysOnTop = false      
+					VisibleCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle      
 					VisibleCham.ZIndex = 8      
 					VisibleCham.Size = obj.Size + Vec3(0.1,0.1,0.1)      
-					VisibleCham.AlwaysOnTop = false      
+					VisibleCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle      
 					VisibleCham.Transparency = 0      
 
 					local WallCham = INST("BoxHandleAdornment")      
 					WallCham.Name = "WallCham"      
-					WallCham.AlwaysOnTop = true      
+					WallCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle      
 					WallCham.ZIndex = 5      
 					WallCham.Size = obj.Size + Vec3(0.1,0.1,0.1)      
-					WallCham.AlwaysOnTop = true      
+					WallCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle      
 					WallCham.Transparency = 0.7      
 
 					if values.visuals.players.chams.Toggle then      
@@ -7351,7 +7353,9 @@ Players.PlayerAdded:Connect(function(Player)
 					INSERT(ChamItems, WallCham)      
 
 					VisibleCham.Color3 = values.visuals.players.chams.Color      
-					WallCham.Color3 = values.visuals.players.chams.Color      
+					WallCham.Color3 = values.visuals.players.chams.Color   
+					WallCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle
+					VisibleCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle
 
 					VisibleCham.AdornCullingMode = "Never"      
 					WallCham.AdornCullingMode = "Never"      
@@ -7425,18 +7429,18 @@ for _,Player in pairs(Players:GetPlayers()) do
 				if obj:IsA("BasePart") and Player ~= LocalPlayer and obj.Name ~= "HumanoidRootPart" and obj.Name ~= "Head" and obj.Name ~= "BackC4" and obj.Name ~= "HeadHB" then      
 					local VisibleCham = INST("BoxHandleAdornment")      
 					VisibleCham.Name = "VisibleCham"      
-					VisibleCham.AlwaysOnTop = false      
+					VisibleCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle      
 					VisibleCham.ZIndex = 5      
 					VisibleCham.Size = obj.Size + Vec3(0.1,0.1,0.1)      
-					VisibleCham.AlwaysOnTop = false      
+					VisibleCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle      
 					VisibleCham.Transparency = 0      
 
 					local WallCham = INST("BoxHandleAdornment")      
 					WallCham.Name = "WallCham"      
-					WallCham.AlwaysOnTop = true      
+					WallCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle      
 					WallCham.ZIndex = 5      
 					WallCham.Size = obj.Size + Vec3(0.1,0.1,0.1)      
-					WallCham.AlwaysOnTop = true      
+					WallCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle      
 					WallCham.Transparency = 0.7      
 
 					if values.visuals.players.chams.Toggle then      
@@ -7480,18 +7484,18 @@ for _,Player in pairs(Players:GetPlayers()) do
 			if obj:IsA("BasePart") and Player ~= LocalPlayer and obj.Name ~= "HumanoidRootPart" and obj.Name ~= "Head" and obj.Name ~= "BackC4" and obj.Name ~= "HeadHB" then      
 				local VisibleCham = INST("BoxHandleAdornment")      
 				VisibleCham.Name = "VisibleCham"      
-				VisibleCham.AlwaysOnTop = false      
+				VisibleCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle      
 				VisibleCham.ZIndex = 5      
 				VisibleCham.Size = obj.Size + Vec3(0.1,0.1,0.1)      
-				VisibleCham.AlwaysOnTop = false      
+				VisibleCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle      
 				VisibleCham.Transparency = 0      
 
 				local WallCham = INST("BoxHandleAdornment")      
 				WallCham.Name = "WallCham"      
-				WallCham.AlwaysOnTop = true      
+				WallCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle      
 				WallCham.ZIndex = 5      
 				WallCham.Size = obj.Size + Vec3(0.1,0.1,0.1)      
-				WallCham.AlwaysOnTop = true      
+				WallCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle      
 				WallCham.Transparency = 0.7      
 
 				if values.visuals.players.chams.Toggle then      
