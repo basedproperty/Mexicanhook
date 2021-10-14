@@ -5746,8 +5746,7 @@ RunService.RenderStepped:Connect(function(step)
 						if TBLFIND(values.rage.aimbot.resolver.Jumbobox, "roll") then      
 							Player.Character.Humanoid.MaxSlopeAngle = 0      
 						end  
-						if TBLFIND(values.rage.aimbot.resolver.Jumbobox, "animation") then 
-							print("a")     
+						if TBLFIND(values.rage.aimbot.resolver.Jumbobox, "animation") then     
 							for i2,Animation in pairs(Player.Character.Humanoid:GetPlayingAnimationTracks()) do
 								Animation:Stop()
 							end
