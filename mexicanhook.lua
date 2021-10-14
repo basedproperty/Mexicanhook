@@ -4574,7 +4574,7 @@ end
 
 RunService.RenderStepped:Wait()      
 
-local gui = library:New("mexicanhook 1.1.1")      
+local gui = library:New("mexicanhook 1.2")      
 local legit = gui:Tab("legit")      
 local rage = gui:Tab("rage")      
 local visuals = gui:Tab("visuals")      
@@ -4684,7 +4684,7 @@ aimbot:Element("Dropdown", "origin", {options = {"character", "camera"}})
 aimbot:Element("Toggle", "silent aim")      
 aimbot:Element("Dropdown", "automatic fire", {options = {"off", "standard", "hitpart"}})      
 aimbot:Element("Toggle", "automatic penetration")      
-aimbot:Element("Jumbobox", "resolver", {options = {"pitch", "roll"}})      
+aimbot:Element("Jumbobox", "resolver", {options = {"pitch", "roll","animation"}})      
 aimbot:Element("Toggle", "delay shot")      
 aimbot:Element("Toggle", "force hit")      
 aimbot:Element("Toggle", "sex package")      
@@ -5745,7 +5745,13 @@ RunService.RenderStepped:Connect(function(step)
 						end      
 						if TBLFIND(values.rage.aimbot.resolver.Jumbobox, "roll") then      
 							Player.Character.Humanoid.MaxSlopeAngle = 0      
-						end      
+						end  
+						if TBLFIND(values.rage.aimbot.resolver.Jumbobox, "animation") then 
+							print("a")     
+							for i2,Animation in pairs(Player.Character.Humanoid:GetPlayingAnimationTracks()) do
+								Animation:Stop()
+							end
+						end     
 					end      
 					if Player.Character and Player.Character:FindFirstChild("Humanoid") and not Client.DISABLED and Player.Character:FindFirstChild("Humanoid").Health > 0 and Player.Team ~= "TTT" and not Player.Character:FindFirstChildOfClass("ForceField") and GetDeg(CamCFrame, Player.Character.Head.Position) <= Stats["max fov"].Slider and Player ~= LocalPlayer then      
 						if Player.Team ~= LocalPlayer.Team or values.rage.aimbot.teammates.Toggle and Player:FindFirstChild("Status") and Player.Status.Team.Value ~= LocalPlayer.Status.Team.Value and Player.Status.Alive.Value then      
