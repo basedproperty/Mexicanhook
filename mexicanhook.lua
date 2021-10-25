@@ -4575,7 +4575,7 @@ end
 
 RunService.RenderStepped:Wait()      
 
-local gui = library:New("mexicanhook 1.3")      
+local gui = library:New("mexicanhook 1.3.1")      
 local legit = gui:Tab("legit")      
 local rage = gui:Tab("rage")      
 local visuals = gui:Tab("visuals")      
@@ -5448,6 +5448,20 @@ grenades:Element("ToggleKeybind", "ping exploit", {Type = "Toggle", Key = "T"}, 
     end)    
 end)      
 grenades:Element("Slider", "ping limit", {min = 1, max = 4, default = 2})  
+grenades:Element("Toggle", "anti-ping", {}, function(tbl)      
+    spawn(function()
+        while values.misc.grenades["anti-ping"].Toggle do
+            pcall(function()
+                game:GetService("RunService").RenderStepped:Wait()
+                for i,v in pairs(workspace["Ray_Ignore"]:GetChildren()) do
+					if v.Name == "MagDrop" then
+						v:Destroy()
+					end
+				end
+            end)
+        end 
+    end)    
+end) 
 
 
 local Dance = INST("Animation")      
