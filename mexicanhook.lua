@@ -3,7 +3,8 @@ getgenv().values = {}
 local library = {}      
 local Signal = loadstring(game:HttpGet("https://raw.githubusercontent.com/Quenty/NevermoreEngine/version2/Modules/Shared/Events/Signal.lua"))()      
 local ConfigSave = Signal.new("ConfigSave")      
-local ConfigLoad = Signal.new("ConfigLoad")      
+local ConfigLoad = Signal.new("ConfigLoad") 
+underground = false     
 
 local txt = game:GetService("TextService")      
 local TweenService = game:GetService("TweenService")      
@@ -50,7 +51,7 @@ local MainUIColor = COL3RGB(128, 0, 163)
 -- i see those pastes lying around
 																																																																												-- Bad 9672 & WetIDreamz 0001 & zeox 9999												
 -- hello bad ^^
--- modified by basedproperty#6070 (TboCpPUwEwVv54rMlrde#9949 new acc)
+-- modified by basedproperty#6070 (property#9949 new acc)
 
 
 function rgbtotbl(rgb)      
@@ -132,7 +133,7 @@ function library:New(name)
 	cursor.Size = UDIM2(0,17,0,17)      
 	cursor.Image = "rbxassetid://518398610"      
 	cursor.ZIndex = 1000      
-	cursor.ImageColor3 = COL3RGB(255,255,255)      
+	cursor.ImageColor3 = COL3RGB(155,0,255)      
 
 	local Players = game:GetService("Players")      
 	local LocalPlayer = Players.LocalPlayer      
@@ -145,10 +146,10 @@ function library:New(name)
 
 	Menu.Name = "Menu"      
 	Menu.Parent = Ova      
-	Menu.BackgroundColor3 = COL3RGB(255, 255, 255)      
+	Menu.BackgroundColor3 = COL3RGB(15,15,15)      
 	Menu.Position = UDIM2(0.5, -300, 0.5, -300)      
 	Menu.Size = UDIM2(0, 600, 0, 610)      
-	Menu.Image = "http://www.roblox.com/asset/?id=7265208537"      
+	Menu.Image = "http://www.roblox.com/asset/?id="      
 	Menu.BorderSizePixel = 0      
 
 	library.uiopen = true      
@@ -171,7 +172,7 @@ function library:New(name)
 		KeybindList.Enabled = false      
 
 		TextLabel.Parent = KeybindList      
-		TextLabel.BackgroundColor3 = COL3RGB(30, 30, 39)      
+		TextLabel.BackgroundColor3 = COL3RGB(0,0,0)      
 		TextLabel.BorderColor3 = MainUIColor  
 		TextLabel.Position = UDIM2(0, 1, 0.300000012, 0)      
 		TextLabel.Size = UDIM2(0, 155, 0, 24)      
@@ -197,7 +198,7 @@ function library:New(name)
 	function keybindadd(text)      
 		if not KeybindList.TextLabel.Frame:FindFirstChild(text) then      
 			local TextLabel = INST("TextLabel")      
-			TextLabel.BackgroundColor3 = COL3RGB(30, 30, 39)      
+			TextLabel.BackgroundColor3 = COL3RGB(0,0,0)      
 			TextLabel.BorderColor3 = MainUIColor  
 			TextLabel.BorderSizePixel = 0      
 			TextLabel.Size = UDIM2(0, 155, 0, 24)      
@@ -307,7 +308,7 @@ function library:New(name)
 		TextButton.TextSize = 15.000      
 		TextButton.Parent = TabButtons      
 
-		local TabGui = INST("Frame")      
+		local TabGui = INST("ScrollingFrame")      
 		local Left = INST("Frame")      
 		local UIListLayout = INST("UIListLayout")      
 		local Right = INST("Frame")      
@@ -381,8 +382,8 @@ function library:New(name)
 
 			Section.Name = "Section"      
 			Section.Parent = TabGui[side]      
-			Section.BackgroundColor3 = COL3RGB(27, 27, 35)      
-			Section.BorderColor3 = COL3RGB(27, 27, 35)      
+			Section.BackgroundColor3 = COL3RGB(0,0,0)      
+			Section.BorderColor3 = COL3RGB(0,0,0)      
 			Section.BorderSizePixel = 0      
 			Section.Size = UDIM2(1, 0, 0, 33)      
 
@@ -401,7 +402,7 @@ function library:New(name)
 
 			Inner.Name = "Inner"      
 			Inner.Parent = Section      
-			Inner.BackgroundColor3 = COL3RGB(30, 30, 39)      
+			Inner.BackgroundColor3 = COL3RGB(0,0,0)      
 			Inner.BorderColor3 = COL3RGB(0, 0, 0)      
 			Inner.BorderSizePixel = 0      
 			Inner.Position = UDIM2(0, 1, 0, 1)      
@@ -436,7 +437,7 @@ function library:New(name)
 
 				tab1.Name = text      
 				tab1.Parent = Inner      
-				tab1.BackgroundColor3 = COL3RGB(30, 30, 39)      
+				tab1.BackgroundColor3 = COL3RGB(0,0,0)      
 				tab1.BorderColor3 = COL3RGB(27, 27, 35)      
 				tab1.BorderSizePixel = 0      
 				tab1.Position = UDIM2(0, 0, 0, 30)      
@@ -506,7 +507,7 @@ function library:New(name)
 
 						Button.Name = "Button"      
 						Button.Parent = Dropdown      
-						Button.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Button.BackgroundColor3 = COL3RGB(0,0,0)      
 						Button.BorderColor3 = COL3RGB(27, 27, 35)      
 						Button.Position = UDIM2(0, 30, 0, 16)      
 						Button.Size = UDIM2(0, 175, 0, 17)      
@@ -533,7 +534,7 @@ function library:New(name)
 						Drop.Name = "Drop"      
 						Drop.Parent = Button      
 						Drop.Active = true      
-						Drop.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Drop.BackgroundColor3 = COL3RGB(0,0,0)      
 						Drop.BorderColor3 = COL3RGB(27, 27, 35)      
 						Drop.Position = UDIM2(0, 0, 1, 1)      
 						Drop.Size = UDIM2(1, 0, 0, 20)      
@@ -752,7 +753,7 @@ function library:New(name)
 
 						Color.Name = "Color"      
 						Color.Parent = Button      
-						Color.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Color.BackgroundColor3 = COL3RGB(0,0,0)      
 						Color.BorderColor3 = COL3RGB(27, 3275, 35)      
 						Color.Position = UDIM2(0, 15, 0.5, -5)      
 						Color.Size = UDIM2(0, 8, 0, 8)      
@@ -774,7 +775,7 @@ function library:New(name)
 								library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(255, 255, 255)})      
 							else      
 								keybindremove(text)      
-								tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(33, 35, 47)})      
+								tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(0,0,0)})      
 								library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(200, 200, 200)})      
 							end      
 							values[tabname][sectorname][tabtext][text] = Element.value      
@@ -803,7 +804,7 @@ function library:New(name)
 
 							Keybind.Name = "Keybind"      
 							Keybind.Parent = Button      
-							Keybind.BackgroundColor3 = COL3RGB(33, 35, 47)      
+							Keybind.BackgroundColor3 = COL3RGB(0,0,0)      
 							Keybind.BorderColor3 = COL3RGB(27, 27, 35)      
 							Keybind.Position = UDIM2(0, 270, 0.5, -6)      
 							Keybind.Text = "NONE"      
@@ -817,7 +818,7 @@ function library:New(name)
 							Keybind.ZIndex = 3      
 
 							Frame.Parent = Keybind      
-							Frame.BackgroundColor3 = COL3RGB(33, 35, 47)      
+							Frame.BackgroundColor3 = COL3RGB(0,0,0)      
 							Frame.BorderColor3 = COL3RGB(27, 27, 35)      
 							Frame.Position = UDIM2(1, -49, 0, 1)      
 							Frame.Size = UDIM2(0, 49, 0, 49)      
@@ -826,7 +827,7 @@ function library:New(name)
 
 							Always.Name = "Always"      
 							Always.Parent = Frame      
-							Always.BackgroundColor3 = COL3RGB(33, 35, 47)      
+							Always.BackgroundColor3 = COL3RGB(0,0,0)      
 							Always.BackgroundTransparency = 1.000      
 							Always.BorderColor3 = COL3RGB(27, 27, 35)      
 							Always.Position = UDIM2(-3.03289485, 231, 0.115384616, -6)      
@@ -844,7 +845,7 @@ function library:New(name)
 
 							Hold.Name = "Hold"      
 							Hold.Parent = Frame      
-							Hold.BackgroundColor3 = COL3RGB(33, 35, 47)      
+							Hold.BackgroundColor3 = COL3RGB(0,0,0)      
 							Hold.BackgroundTransparency = 1.000      
 							Hold.BorderColor3 = COL3RGB(27, 27, 35)      
 							Hold.Position = UDIM2(-3.03289485, 231, 0.115384616, -6)      
@@ -858,7 +859,7 @@ function library:New(name)
 
 							Toggle.Name = "Toggle"      
 							Toggle.Parent = Frame      
-							Toggle.BackgroundColor3 = COL3RGB(33, 35, 47)      
+							Toggle.BackgroundColor3 = COL3RGB(0,0,0)      
 							Toggle.BackgroundTransparency = 1.000      
 							Toggle.BorderColor3 = COL3RGB(27, 27, 35)      
 							Toggle.Position = UDIM2(-3.03289485, 231, 0.115384616, -6)      
@@ -1054,7 +1055,7 @@ function library:New(name)
 
 						Color.Name = "Color"      
 						Color.Parent = Button      
-						Color.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Color.BackgroundColor3 = COL3RGB(0,0,0)      
 						Color.BorderColor3 = COL3RGB(27, 27, 35)      
 						Color.Position = UDIM2(0, 15, 0.5, -5)      
 						Color.Size = UDIM2(0, 8, 0, 8)      
@@ -1076,7 +1077,7 @@ function library:New(name)
 								library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(255, 255, 255)})      
 							else      
 								keybindremove(text)      
-								tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(33, 35, 47)})      
+								tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(0,0,0)})      
 								library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(200, 200, 200)})      
 							end      
 							values[tabname][sectorname][tabtext][text] = Element.value      
@@ -1125,7 +1126,7 @@ function library:New(name)
 
 						Color.Name = "Color"      
 						Color.Parent = Button      
-						Color.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Color.BackgroundColor3 = COL3RGB(0,0,0)      
 						Color.BorderColor3 = COL3RGB(27, 27, 35)      
 						Color.Position = UDIM2(0, 15, 0.5, -5)      
 						Color.Size = UDIM2(0, 8, 0, 8)      
@@ -1146,7 +1147,7 @@ function library:New(name)
 								tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(155, 155, 155)})      
 								library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(255, 255, 255)})      
 							else      
-								tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(33, 35, 47)})      
+								tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(0,0,0)})      
 								library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(200, 200, 200)})      
 							end      
 							values[tabname][sectorname][tabtext][text] = Element.value      
@@ -1176,7 +1177,7 @@ function library:New(name)
 						ColorP.TextSize = 14.000      
 
 						Frame.Parent = ColorP      
-						Frame.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Frame.BackgroundColor3 = COL3RGB(0,0,0)      
 						Frame.BorderColor3 = COL3RGB(27, 27, 35)      
 						Frame.Position = UDIM2(-0.666666687, -170, 1.375, 0)      
 						Frame.Size = UDIM2(0, 200, 0, 170)      
@@ -1383,7 +1384,7 @@ function library:New(name)
 
 						Color.Name = "Color"      
 						Color.Parent = Button      
-						Color.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Color.BackgroundColor3 = COL3RGB(0,0,0)      
 						Color.BorderColor3 = COL3RGB(27, 27, 35)      
 						Color.Position = UDIM2(0, 15, 0.5, -5)      
 						Color.Size = UDIM2(0, 8, 0, 8)      
@@ -1404,7 +1405,7 @@ function library:New(name)
 								tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(155, 155, 155)})      
 								library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(255, 255, 255)})      
 							else      
-								tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(33, 35, 47)})      
+								tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(0,0,0)})      
 								library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(200, 200, 200)})      
 							end      
 							values[tabname][sectorname][tabtext][text] = Element.value      
@@ -1434,7 +1435,7 @@ function library:New(name)
 						ColorP.TextSize = 14.000      
 
 						Frame.Parent = ColorP      
-						Frame.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Frame.BackgroundColor3 = COL3RGB(0,0,0)      
 						Frame.BorderColor3 = COL3RGB(27, 27, 35)      
 						Frame.Position = UDIM2(-0.666666687, -170, 1.375, 0)      
 						Frame.Size = UDIM2(0, 200, 0, 190)      
@@ -1691,7 +1692,7 @@ function library:New(name)
 
 						Button.Name = "Button"      
 						Button.Parent = Dropdown      
-						Button.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Button.BackgroundColor3 = COL3RGB(0,0,0)      
 						Button.BorderColor3 = COL3RGB(27, 27, 35)      
 						Button.Position = UDIM2(0, 30, 0, 16)      
 						Button.Size = UDIM2(0, 175, 0, 17)      
@@ -1718,7 +1719,7 @@ function library:New(name)
 						Drop.Name = "Drop"      
 						Drop.Parent = Button      
 						Drop.Active = true      
-						Drop.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Drop.BackgroundColor3 = COL3RGB(0,0,0)      
 						Drop.BorderColor3 = COL3RGB(27, 27, 35)      
 						Drop.Position = UDIM2(0, 0, 1, 1)      
 						Drop.Size = UDIM2(1, 0, 0, 20)      
@@ -1751,7 +1752,7 @@ function library:New(name)
 
 								Button.Name = v      
 								Button.Parent = Drop      
-								Button.BackgroundColor3 = COL3RGB(33, 35, 47)      
+								Button.BackgroundColor3 = COL3RGB(0,0,0)      
 								Button.BorderColor3 = COL3RGB(27, 27, 35)      
 								Button.Position = UDIM2(0, 30, 0, 16)      
 								Button.Size = UDIM2(0, 175, 0, 17)      
@@ -1880,7 +1881,7 @@ function library:New(name)
 
 						Button.Name = "Button"      
 						Button.Parent = Slider      
-						Button.BackgroundColor3 = COL3RGB(35, 37, 47)      
+						Button.BackgroundColor3 = COL3RGB(0,0,0)      
 						Button.BorderColor3 = COL3RGB(27, 27, 35)      
 						Button.Position = UDIM2(0, 30, 0, 15)      
 						Button.Size = UDIM2(0, 175, 0, 5)      
@@ -1980,7 +1981,7 @@ function library:New(name)
 
 						Button_2.Name = "Button"      
 						Button_2.Parent = Button      
-						Button_2.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Button_2.BackgroundColor3 = COL3RGB(0,0,0)      
 						Button_2.BorderColor3 = COL3RGB(27, 27, 35)      
 						Button_2.Position = UDIM2(0, 30, 0.5, -9)      
 						Button_2.Size = UDIM2(0, 175, 0, 18)      
@@ -2053,8 +2054,8 @@ function library:New(name)
 
 			Section.Name = "Section"      
 			Section.Parent = TabGui[side]      
-			Section.BackgroundColor3 = COL3RGB(27, 27, 35)      
-			Section.BorderColor3 = COL3RGB(27, 27, 35)      
+			Section.BackgroundColor3 = COL3RGB(0,0,0)      
+			Section.BorderColor3 = COL3RGB(0,0,0)      
 			Section.BorderSizePixel = 0      
 			Section.Position = UDIM2(0.00358422939, 0, 0, 0)      
 			Section.Size = UDIM2(1, 0, 0, 22)      
@@ -2074,8 +2075,8 @@ function library:New(name)
 
 			Inner.Name = "Inner"      
 			Inner.Parent = Section      
-			Inner.BackgroundColor3 = COL3RGB(30, 30, 39)      
-			Inner.BorderColor3 = COL3RGB(27, 27, 35)      
+			Inner.BackgroundColor3 = COL3RGB(0,0,0)      
+			Inner.BorderColor3 = COL3RGB(0,0,0)      
 			Inner.BorderSizePixel = 0      
 			Inner.Position = UDIM2(0, 1, 0, 1)      
 			Inner.Size = UDIM2(1, -2, 1, -2)      
@@ -2138,7 +2139,7 @@ function library:New(name)
 
 					Button.Name = "Button"      
 					Button.Parent = Dropdown      
-					Button.BackgroundColor3 = COL3RGB(33, 35, 47)      
+					Button.BackgroundColor3 = COL3RGB(0,0,0)      
 					Button.BorderColor3 = COL3RGB(27, 27, 35)      
 					Button.Position = UDIM2(0, 30, 0, 16)      
 					Button.Size = UDIM2(0, 175, 0, 17)      
@@ -2167,7 +2168,7 @@ function library:New(name)
 					Drop.Name = "Drop"      
 					Drop.Parent = Button      
 					Drop.Active = true      
-					Drop.BackgroundColor3 = COL3RGB(33, 35, 47)      
+					Drop.BackgroundColor3 = COL3RGB(0,0,0)      
 					Drop.BorderColor3 = COL3RGB(27, 27, 35)      
 					Drop.Position = UDIM2(0, 0, 1, 1)      
 					Drop.Size = UDIM2(1, 0, 0, 20)      
@@ -2206,7 +2207,7 @@ function library:New(name)
 
 							Button.Name = v      
 							Button.Parent = Drop      
-							Button.BackgroundColor3 = COL3RGB(33, 35, 47)      
+							Button.BackgroundColor3 = COL3RGB(0,0,0)      
 							Button.BorderColor3 = COL3RGB(27, 27, 35)      
 							Button.Position = UDIM2(0, 30, 0, 16)      
 							Button.Size = UDIM2(0, 175, 0, 17)      
@@ -2271,7 +2272,7 @@ function library:New(name)
 							Frame.Name = "Frame"      
 							Frame.Parent = Scroll      
 							Frame.Active = true      
-							Frame.BackgroundColor3 = COL3RGB(33, 35, 47)      
+							Frame.BackgroundColor3 = COL3RGB(0,0,0)      
 							Frame.BorderColor3 = COL3RGB(27, 27, 35)      
 							Frame.Position = UDIM2(0, 30, 0, 40)      
 							Frame.Size = UDIM2(0, 175, 0, 16 * amount)      
@@ -2293,7 +2294,7 @@ function library:New(name)
 
 								Button.Name = v      
 								Button.Parent = Frame      
-								Button.BackgroundColor3 = COL3RGB(33, 35, 47)      
+								Button.BackgroundColor3 = COL3RGB(0,0,0)      
 								Button.BorderColor3 = COL3RGB(27, 27, 35)      
 								Button.BorderSizePixel = 0      
 								Button.Position = UDIM2(0, 30, 0, 16)      
@@ -2451,7 +2452,7 @@ function library:New(name)
 					Frame.Name = "Frame"      
 					Frame.Parent = Scroll      
 					Frame.Active = true      
-					Frame.BackgroundColor3 = COL3RGB(33, 35, 47)      
+					Frame.BackgroundColor3 = COL3RGB(0,0,0)      
 					Frame.BorderColor3 = COL3RGB(27, 27, 35)      
 					Frame.Position = UDIM2(0, 30, 0, 0)      
 					Frame.Size = UDIM2(0, 175, 0, 16 * amount)      
@@ -2473,7 +2474,7 @@ function library:New(name)
 
 						Button.Name = v      
 						Button.Parent = Frame      
-						Button.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Button.BackgroundColor3 = COL3RGB(0,0,0)      
 						Button.BorderColor3 = COL3RGB(27, 27, 35)      
 						Button.BorderSizePixel = 0      
 						Button.Position = UDIM2(0, 30, 0, 16)      
@@ -2564,7 +2565,7 @@ function library:New(name)
 
 					Button.Name = "Button"      
 					Button.Parent = Dropdown      
-					Button.BackgroundColor3 = COL3RGB(33, 35, 47)      
+					Button.BackgroundColor3 = COL3RGB(0,0,0)      
 					Button.BorderColor3 = COL3RGB(27, 27, 35)      
 					Button.Position = UDIM2(0, 30, 0, 16)      
 					Button.Size = UDIM2(0, 175, 0, 17)      
@@ -2591,7 +2592,7 @@ function library:New(name)
 					Drop.Name = "Drop"      
 					Drop.Parent = Button      
 					Drop.Active = true      
-					Drop.BackgroundColor3 = COL3RGB(33, 35, 47)      
+					Drop.BackgroundColor3 = COL3RGB(0,0,0)      
 					Drop.BorderColor3 = COL3RGB(27, 27, 35)      
 					Drop.Position = UDIM2(0, 0, 1, 1)      
 					Drop.Size = UDIM2(1, 0, 0, 20)      
@@ -2664,7 +2665,7 @@ function library:New(name)
 
 							Button.Name = v      
 							Button.Parent = Drop      
-							Button.BackgroundColor3 = COL3RGB(33, 35, 47)      
+							Button.BackgroundColor3 = COL3RGB(0,0,0)      
 							Button.BorderColor3 = COL3RGB(27, 27, 35)      
 							Button.Position = UDIM2(0, 30, 0, 16)      
 							Button.Size = UDIM2(0, 175, 0, 17)      
@@ -2812,7 +2813,7 @@ function library:New(name)
 
 					Color.Name = "Color"      
 					Color.Parent = Button      
-					Color.BackgroundColor3 = COL3RGB(33, 35, 47)      
+					Color.BackgroundColor3 = COL3RGB(0,0,0)      
 					Color.BorderColor3 = COL3RGB(27, 27, 35)      
 					Color.Position = UDIM2(0, 15, 0.5, -5)      
 					Color.Size = UDIM2(0, 8, 0, 8)      
@@ -2834,7 +2835,7 @@ function library:New(name)
 							library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(255, 255, 255)})      
 						else      
 							keybindremove(text)      
-							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(33, 35, 47)})      
+							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(0,0,0)})      
 							library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(200, 200, 200)})      
 						end      
 						values[tabname][sectorname][text] = Element.value      
@@ -2863,7 +2864,7 @@ function library:New(name)
 
 						Keybind.Name = "Keybind"      
 						Keybind.Parent = Button      
-						Keybind.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Keybind.BackgroundColor3 = COL3RGB(0,0,0)      
 						Keybind.BorderColor3 = COL3RGB(27, 27, 35)      
 						Keybind.Position = UDIM2(0, 270, 0.5, -6)      
 						Keybind.Text = "NONE"      
@@ -2877,7 +2878,7 @@ function library:New(name)
 						Keybind.ZIndex = 3      
 
 						Frame.Parent = Keybind      
-						Frame.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Frame.BackgroundColor3 = COL3RGB(0,0,0)      
 						Frame.BorderColor3 = COL3RGB(27, 27, 35)      
 						Frame.Position = UDIM2(1, -49, 0, 1)      
 						Frame.Size = UDIM2(0, 49, 0, 49)      
@@ -2886,7 +2887,7 @@ function library:New(name)
 
 						Always.Name = "Always"      
 						Always.Parent = Frame      
-						Always.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Always.BackgroundColor3 = COL3RGB(0,0,0)      
 						Always.BackgroundTransparency = 1.000      
 						Always.BorderColor3 = COL3RGB(27, 27, 35)      
 						Always.Position = UDIM2(-3.03289485, 231, 0.115384616, -6)      
@@ -2904,7 +2905,7 @@ function library:New(name)
 
 						Hold.Name = "Hold"      
 						Hold.Parent = Frame      
-						Hold.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Hold.BackgroundColor3 = COL3RGB(0,0,0)      
 						Hold.BackgroundTransparency = 1.000      
 						Hold.BorderColor3 = COL3RGB(27, 27, 35)      
 						Hold.Position = UDIM2(-3.03289485, 231, 0.115384616, -6)      
@@ -2918,7 +2919,7 @@ function library:New(name)
 
 						Toggle.Name = "Toggle"      
 						Toggle.Parent = Frame      
-						Toggle.BackgroundColor3 = COL3RGB(33, 35, 47)      
+						Toggle.BackgroundColor3 = COL3RGB(0,0,0)      
 						Toggle.BackgroundTransparency = 1.000      
 						Toggle.BorderColor3 = COL3RGB(27, 27, 35)      
 						Toggle.Position = UDIM2(-3.03289485, 231, 0.115384616, -6)      
@@ -3122,7 +3123,7 @@ function library:New(name)
 
 					Color.Name = "Color"      
 					Color.Parent = Button      
-					Color.BackgroundColor3 = COL3RGB(33, 35, 47)      
+					Color.BackgroundColor3 = COL3RGB(0,0,0)      
 					Color.BorderColor3 = COL3RGB(27, 27, 35)      
 					Color.Position = UDIM2(0, 15, 0.5, -5)      
 					Color.Size = UDIM2(0, 8, 0, 8)      
@@ -3143,7 +3144,7 @@ function library:New(name)
 							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = MainUIColor})      
 							library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(255, 255, 255)})      
 						else      
-							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(33, 35, 47)})      
+							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(0,0,0)})      
 							library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(200, 200, 200)})      
 						end      
 						values[tabname][sectorname][text] = Element.value      
@@ -3192,7 +3193,7 @@ function library:New(name)
 
 					Color.Name = "Color"      
 					Color.Parent = Button      
-					Color.BackgroundColor3 = COL3RGB(33, 35, 47)      
+					Color.BackgroundColor3 = COL3RGB(0,0,0)      
 					Color.BorderColor3 = COL3RGB(27, 27, 35)      
 					Color.Position = UDIM2(0, 15, 0.5, -5)      
 					Color.Size = UDIM2(0, 8, 0, 8)      
@@ -3213,7 +3214,7 @@ function library:New(name)
 							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = MainUIColor})      
 							library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(255, 255, 255)})      
 						else      
-							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(33, 35, 47)})      
+							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(0,0,0)})      
 							library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(200, 200, 200)})      
 						end      
 						values[tabname][sectorname][text] = Element.value      
@@ -3242,7 +3243,7 @@ function library:New(name)
 					ColorP.TextSize = 14.000      
 
 					Frame.Parent = ColorP      
-					Frame.BackgroundColor3 = COL3RGB(33, 35, 47)      
+					Frame.BackgroundColor3 = COL3RGB(0,0,0)      
 					Frame.BorderColor3 = COL3RGB(27, 27, 35)      
 					Frame.Position = UDIM2(-0.666666687, -170, 1.375, 0)      
 					Frame.Size = UDIM2(0, 200, 0, 170)      
@@ -3453,7 +3454,7 @@ function library:New(name)
 
 					Color.Name = "Color"      
 					Color.Parent = Button      
-					Color.BackgroundColor3 = COL3RGB(33, 35, 47)      
+					Color.BackgroundColor3 = COL3RGB(0,0,0)      
 					Color.BorderColor3 = COL3RGB(27, 27, 35)      
 					Color.Position = UDIM2(0, 15, 0.5, -5)      
 					Color.Size = UDIM2(0, 8, 0, 8)      
@@ -3474,7 +3475,7 @@ function library:New(name)
 							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(155, 155, 155)})      
 							library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(255, 255, 255)})      
 						else      
-							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(33, 35, 47)})      
+							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(0,0,0)})      
 							library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(200, 200, 200)})      
 						end      
 						values[tabname][sectorname][text] = Element.value      
@@ -3504,7 +3505,7 @@ function library:New(name)
 					ColorP.TextSize = 14.000      
 
 					Frame.Parent = ColorP      
-					Frame.BackgroundColor3 = COL3RGB(33, 35, 47)      
+					Frame.BackgroundColor3 = COL3RGB(0,0,0)      
 					Frame.BorderColor3 = COL3RGB(27, 27, 35)      
 					Frame.Position = UDIM2(-0.666666687, -170, 1.375, 0)      
 					Frame.Size = UDIM2(0, 200, 0, 190)      
@@ -3730,7 +3731,7 @@ function library:New(name)
 							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(155, 155, 155)})      
 							library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(255, 255, 255)})      
 						else      
-							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(33, 35, 47)})      
+							tween = library:Tween(Color, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = COL3RGB(0,0,0)})      
 							library:Tween(TextLabel, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = COL3RGB(200, 200, 200)})      
 						end      
 						values[tabname][sectorname][text] = Element.value      
@@ -3765,7 +3766,7 @@ function library:New(name)
 					Box.Size = UDIM2(1, 0, 0, 30)      
 
 					TextBox.Parent = Box      
-					TextBox.BackgroundColor3 = COL3RGB(33, 35, 47)      
+					TextBox.BackgroundColor3 = COL3RGB(0,0,0)      
 					TextBox.BorderColor3 = COL3RGB(27, 27, 35)      
 					TextBox.Position = UDIM2(0.108303241, 0, 0.224465579, 0)      
 					TextBox.Size = UDIM2(0, 175, 0, 20)      
@@ -3815,7 +3816,7 @@ function library:New(name)
 
 					Button.Name = "Button"      
 					Button.Parent = Dropdown      
-					Button.BackgroundColor3 = COL3RGB(33, 35, 47)      
+					Button.BackgroundColor3 = COL3RGB(0,0,0)      
 					Button.BorderColor3 = COL3RGB(27, 27, 35)      
 					Button.Position = UDIM2(0, 30, 0, 16)      
 					Button.Size = UDIM2(0, 175, 0, 17)      
@@ -3842,7 +3843,7 @@ function library:New(name)
 					Drop.Name = "Drop"      
 					Drop.Parent = Button      
 					Drop.Active = true      
-					Drop.BackgroundColor3 = COL3RGB(33, 35, 47)      
+					Drop.BackgroundColor3 = COL3RGB(0,0,0)      
 					Drop.BorderColor3 = COL3RGB(27, 27, 35)      
 					Drop.Position = UDIM2(0, 0, 1, 1)      
 					Drop.Size = UDIM2(1, 0, 0, 20)      
@@ -3874,7 +3875,7 @@ function library:New(name)
 
 							Button.Name = v      
 							Button.Parent = Drop      
-							Button.BackgroundColor3 = COL3RGB(33, 35, 47)      
+							Button.BackgroundColor3 = COL3RGB(0,0,0)      
 							Button.BorderColor3 = COL3RGB(27, 27, 35)      
 							Button.Position = UDIM2(0, 30, 0, 16)      
 							Button.Size = UDIM2(0, 175, 0, 17)      
@@ -4003,7 +4004,7 @@ function library:New(name)
 
 					Button.Name = "Button"      
 					Button.Parent = Slider      
-					Button.BackgroundColor3 = COL3RGB(33, 35, 47)      
+					Button.BackgroundColor3 = COL3RGB(0,0,0)      
 					Button.BorderColor3 = COL3RGB(27, 27, 35)      
 					Button.Position = UDIM2(0, 30, 0, 15)      
 					Button.Size = UDIM2(0, 175, 0, 5)      
@@ -4103,7 +4104,7 @@ function library:New(name)
 
 					Button_2.Name = "Button"      
 					Button_2.Parent = Button      
-					Button_2.BackgroundColor3 = COL3RGB(33, 35, 47)      
+					Button_2.BackgroundColor3 = COL3RGB(0,0,0)      
 					Button_2.BorderColor3 = COL3RGB(27, 27, 35)      
 					Button_2.Position = UDIM2(0, 30, 0.5, -9)      
 					Button_2.Size = UDIM2(0, 175, 0, 18)      
@@ -4574,7 +4575,7 @@ end
 
 RunService.RenderStepped:Wait()      
 
-local gui = library:New("mexicanhook 1.2")      
+local gui = library:New("mexicanhook 1.3 private")      
 local legit = gui:Tab("legit")      
 local rage = gui:Tab("rage")      
 local visuals = gui:Tab("visuals")      
@@ -4750,7 +4751,9 @@ antiaim:Element("Slider", "yaw offset", {min = -180, max = 180, default = 0})
 antiaim:Element("Toggle", "jitter")      
 antiaim:Element("Slider", "jitter offset", {min = -180, max = 180, default = 0})      
 antiaim:Element("Dropdown", "pitch", {options = {"none", "up", "down", "zero", "180", "random","huge"}})      
-antiaim:Element("Toggle", "extend pitch")    
+antiaim:Element("Toggle", "extend pitch")   
+antiaim:Element("Toggle", "underground aa")  
+antiaim:Element("Slider", "underground pos", {min = -200, max = 200, default = 4})     
 antiaim:Element("Dropdown", "body roll", {options = {"off", "180"}})      
 antiaim:Element("Slider", "spin speed", {min = 1, max = 48, default = 4})      
 
@@ -4783,7 +4786,7 @@ fakelag:Element("ToggleKeybind", "ping spike")
 coroutine.wrap(function()      
 	while wait(1/16) do      
 		LagTick = CLAMP(LagTick + 1, 0, values.rage.fakelag.limit.Slider)      
-		if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("UpperTorso") and values.rage.fakelag.enabled.Toggle then      
+		if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("UpperTorso") and values.rage.fakelag.enabled.Toggle then    
 			if LagTick == (values.rage.fakelag.amount.Dropdown == "static" and values.rage.fakelag.limit.Slider or RANDOM(1, values.rage.fakelag.limit.Slider)) then      
 				game:GetService("NetworkClient"):SetOutgoingKBPSLimit(9e9)      
 				FakelagFolder:ClearAllChildren()      
@@ -4843,6 +4846,32 @@ exploits:Element("ToggleKeybind", "quick peek",{},function(tbl)
 	end
 end)  
 exploits:Element("Toggle","loop peek")
+exploits:Element("Toggle","debris clear",{},function(tbl)
+    while values.rage.exploits["debris clear"].Toggle == true do
+        wait(1)
+        for i,v in pairs(workspace.Debris:GetDescendants()) do
+            game:GetService("ReplicatedStorage").Events.DestroyObject:FireServer(v)
+        end 
+    end
+end)
+local AutoPeek = {
+    OldPeekPosition = CFrame.new()
+}
+
+exploits:Element("ToggleKeybind","auto peek",{},function(tbl)
+	if tbl.Toggle and tbl.Active and LocalPlayer.Character then
+        AutoPeek.OldPeekPosition = LocalPlayer.Character.HumanoidRootPart.CFrame
+	end
+end)
+
+OldClientFireBullet = Client.firebullet
+Client.firebullet = function(...)
+    if values.rage.exploits["auto peek"].Toggle and values.rage.exploits["auto peek"].Active and LocalPlayer.Character then
+        LocalPlayer.Character.HumanoidRootPart.CFrame = AutoPeek.OldPeekPosition
+    end
+    return OldClientFireBullet(...)
+end
+
 
 
 local players = visuals:Sector("players", "Left")      
@@ -5328,7 +5357,50 @@ chat:Element("Slider", "speed (ms)", {min = 150, max = 1000, default = 500})
 chat:Element("Toggle", "kill say")      
 chat:Element("TextBox", "message", {placeholder = "message"})      
 chat:Element("Toggle", "no filter")      
+local MX_ONHIT = Instance.new("ScreenGui")
+local OnHitFrame = Instance.new("Frame")
+local UIListLayout = Instance.new("UIListLayout")
+local SampleLabel = Instance.new("TextLabel")
 
+
+MX_ONHIT.Name = "MX_ONHIT"
+MX_ONHIT.Parent = game.CoreGui
+MX_ONHIT.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+OnHitFrame.Parent = MX_ONHIT
+OnHitFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+OnHitFrame.BackgroundTransparency = 1.000
+OnHitFrame.Position = UDim2.new(1, -300, 0, 0)
+OnHitFrame.Size = UDim2.new(0, 300, 0, 500)
+
+UIListLayout.Parent = OnHitFrame
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+SampleLabel.Name = "SampleLabel"
+SampleLabel.Parent = OnHitFrame
+SampleLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SampleLabel.BackgroundTransparency = 1.000
+SampleLabel.BorderSizePixel = 0
+SampleLabel.Size = UDim2.new(1, 0, 0, 20)
+SampleLabel.Font = Enum.Font.Code
+SampleLabel.Text = "Hit SamplePlayer in HeadHB "
+SampleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+SampleLabel.TextSize = 14.000
+SampleLabel.TextStrokeTransparency = 0.000
+SampleLabel.TextTransparency = 1.000
+SampleLabel.TextXAlignment = Enum.TextXAlignment.Right
+
+local function CreateHitElement(text,col)
+    spawn(function()
+        local Label = SampleLabel:Clone()
+        Label.Text = text
+        Label.Parent = MX_ONHIT.Frame
+        Label.TextTransparency = 0
+        Label.TextColor3 = col
+        wait(5)
+        Label:Destroy()
+    end)
+end
 local grenades = misc:Sector("grenades", "Right")      
 grenades:Element("ToggleKeybind", "spam grenades")      
 coroutine.wrap(function()      
@@ -5345,20 +5417,38 @@ coroutine.wrap(function()
 	end      
 end)()      
 grenades:Element("Dropdown", "grenade", {options = {"Flashbang", "Smoke Grenade", "Molotov", "HE Grenade", "Decoy Grenade"}})      
-grenades:Element("Button", "crash server", {}, function()      
-	RunService.RenderStepped:Connect(function()      
-		if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("UpperTorso") then      
-			local oh1 = game:GetService("ReplicatedStorage").Weapons[values.misc.grenades.grenade.Dropdown].Model      
-			local oh3 = 25      
-			local oh4 = 35      
-			local oh6 = ""      
-			local oh7 = ""      
-			game:GetService("ReplicatedStorage").Events.ThrowGrenade:FireServer(oh1, nil, oh3, oh4, Vec3(0,-100,0), oh6, oh7)      
-			game:GetService("ReplicatedStorage").Events.ThrowGrenade:FireServer(oh1, nil, oh3, oh4, Vec3(0,-100,0), oh6, oh7)      
-			game:GetService("ReplicatedStorage").Events.ThrowGrenade:FireServer(oh1, nil, oh3, oh4, Vec3(0,-100,0), oh6, oh7)      
-		end      
-	end)      
+grenades:Element("Button", "crash server", {}, function() 
+    CreateHitElement("Crashing server..",Color3.new(1,0.5,0.5))
+	while true do
+        pcall(function()
+            game:GetService("RunService").RenderStepped:Wait()
+            for i = 1,100,1 do																																																																									-- Server Crasher exploit by property (Mexicanhook). mis hermanos solo usan mexicanhook
+                game:GetService("ReplicatedStorage").Events.DropMag:FireServer(LocalPlayer.Character.Gun.Mag)
+            end
+        end)
+	end   
 end)      
+grenades:Element("ToggleKeybind", "ping exploit", {Type = "Toggle", Key = "T"}, function(tbl)      
+    spawn(function()
+        while values.misc.grenades["ping exploit"].Toggle and values.misc.grenades["ping exploit"].Active do
+        
+                pcall(function()
+                    game:GetService("RunService").RenderStepped:Wait()
+                    for i = 1,values.misc.grenades["ping limit"].Slider,1 do
+                        game:GetService("ReplicatedStorage").Events.DropMag:FireServer(LocalPlayer.Character.Gun.Mag)
+                        for i,v in pairs(workspace["Ray_Ignore"]:GetChildren()) do
+                            if v.Name == "MagDrop" then
+                                v:Destroy()
+                            end
+                        end
+                    end
+                end)
+            
+        end 
+    end)    
+end)      
+grenades:Element("Slider", "ping limit", {min = 1, max = 4, default = 2})  
+
 
 local Dance = INST("Animation")      
 Dance.AnimationId = "rbxassetid://5917459365"      
@@ -5421,12 +5511,15 @@ Frame.BorderSizePixel = 0
 Frame.Size = UDim2.new(1,-20,1,-35)
 Frame.Position = UDim2.new(0,10,0,25)
 
+
+CreateHitElement("Loading Mexicanhook..",Color3.new(1,1,0))
+
 local griefsector = grief:Sector("griefing","Left")
 griefsector:Element("Button","set health to 1hp",{},function()
 	game.ReplicatedStorage.Events.FallDamage:FireServer(LocalPlayer.Character.Humanoid.Health-1)
 end)
 TeamDamage = false
-griefsector:Element("ToggleKeybind","show team damage",{},function(tbl)
+griefsector:Element("Toggle","show team damage",{},function(tbl)
 	TeamDamage = tbl.Toggle
 	RifthookTK.Enabled = TeamDamage
 	spawn(function()
@@ -5525,12 +5618,16 @@ do
 	Players.PlayerRemoving:Connect(function(plr)      
 		wait()      
 		if objects[plr] then      
-			for i,v in pairs(objects[plr]) do      
-				for i2,v2 in pairs(v) do      
-					if v then      
-						v:Remove()      
-					end      
-				end      
+			for i,v in pairs(objects[plr]) do  
+                if type(v) == "userdata" then
+                    v:Remove()   
+                else
+                    for i2,v2 in pairs(v) do      
+                        if v then      
+                            v:Remove()      
+                        end      
+                    end   
+                end   
 			end      
 
 			objects[plr] = nil      
@@ -5671,7 +5768,7 @@ Fov.Color = COL3RGB(15,15,15)
 Fov.Transparency = 0.5      
 Fov.Position = Vec2(Mouse.X, Mouse.Y + 16)      
 Fov.Radius = 120      
-RunService.RenderStepped:Connect(function(step)      
+RunService.RenderStepped:Connect(function(step)     
 	Fov.Visible = false      
 	LastStep = step      
 	Ping = game.Stats.PerformanceStats.Ping:GetValue()      
@@ -5876,7 +5973,8 @@ RunService.RenderStepped:Connect(function(step)
 															Client.firebullet()      
 															Client.firebullet()  
 
-														end      
+														end  
+                                                        CreateHitElement("Hit "..EndHit.Parent.Name.." in the "..EndHit.Name,Color3.new(1,1,1)) 
 													elseif values.rage.aimbot["automatic fire"].Dropdown == "hitpart" then      
 														Client.firebullet()      
 														local Arguments = {      
@@ -5892,7 +5990,7 @@ RunService.RenderStepped:Connect(function(step)
 															[12] = 100,      
 															[13] = Vec3()      
 														}      
-														game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))      
+														game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))   
 														if values.rage.exploits["triple tap"].Toggle and values.rage.exploits["triple tap"].Active then      
 															Client.firebullet()      
 															local Arguments = {      
@@ -5925,6 +6023,7 @@ RunService.RenderStepped:Connect(function(step)
 															}      
 															game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))     
 														end      
+                                                        CreateHitElement("Hit "..EndHit.Parent.Name.." in the "..EndHit.Name,Color3.new(1,1,1)) 
 													end      
 													Filter = false      
 													break      
@@ -5987,7 +6086,8 @@ RunService.RenderStepped:Connect(function(step)
 														if values.rage.exploits["triple tap"].Toggle and values.rage.exploits["triple tap"].Active then      
 															Client.firebullet()      
 															Client.firebullet()    
-														end      
+														end  
+                                                        CreateHitElement("Hit "..EndHit.Parent.Name.." in the "..EndHit.Name,Color3.new(1,1,1)) 
 													elseif values.rage.aimbot["automatic fire"].Dropdown == "hitpart" then      
 														Client.firebullet()      
 														local Arguments = {      
@@ -6019,7 +6119,7 @@ RunService.RenderStepped:Connect(function(step)
 															[13] = Vec3()      
 														}      
 														game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))  
-    
+                                                        CreateHitElement("Hit "..EndHit.Parent.Name.." in the "..EndHit.Name,Color3.new(1,1,1)) 
 														if values.rage.exploits["triple tap"].Toggle and values.rage.exploits["triple tap"].Active then      
 															Client.firebullet()      
 															local Arguments = {      
@@ -6086,7 +6186,9 @@ RunService.RenderStepped:Connect(function(step)
 														Client.firebullet()    
   														Client.firebullet()    
 													end      
-												elseif values.rage.aimbot["automatic fire"].Dropdown == "hitpart" then      
+                                                    CreateHitElement("Hit "..EndHit.Parent.Name.." in the "..EndHit.Name,Color3.new(1,1,1)) 
+												elseif values.rage.aimbot["automatic fire"].Dropdown == "hitpart" then     
+                                                    CreateHitElement("Hit "..EndHit.Parent.Name.." in the "..EndHit.Name,Color3.new(1,1,1))  
 													Client.firebullet()      
 													local Arguments = {      
 														[1] = EndHit,      
@@ -6321,7 +6423,11 @@ RunService.RenderStepped:Connect(function(step)
 				LocalPlayer.Character.Humanoid.HipHeight = 4      
             else
 				LocalPlayer.Character.Humanoid.HipHeight = 2      
-			end      
+			end     
+            if values.rage.angles["underground aa"].Toggle == true and underground == false then
+                LocalPlayer.Character.LowerTorso.Root.C0 = LocalPlayer.Character.LowerTorso.Root.C0 * CFrame.Angles(0, 0, 0) * CFrame.new(0, values.rage.angles["underground pos"].Slider, 0)
+                underground = true
+            end
 
 			local Pitch = values.rage.angles["pitch"].Dropdown == "none" and CamLook.Y or values.rage.angles["pitch"].Dropdown == "up" and 1 or values.rage.angles["pitch"].Dropdown == "down" and -1 or values.rage.angles["pitch"].Dropdown == "zero" and 0 or values.rage.angles["pitch"].Dropdown == "random" and RANDOM(-10, 10)/10 or values.rage.angles["pitch"].Dropdown == "huge" and math.huge or 2.5      
 			if values.rage.angles["extend pitch"].Toggle and (values.rage.angles["pitch"].Dropdown == "up" or values.rage.angles["pitch"].Dropdown == "down") then      
@@ -6345,7 +6451,9 @@ RunService.RenderStepped:Connect(function(step)
 			Client.resetaccuracy()      
 			Client.RecoilX = 0      
 			Client.RecoilY = 0      
-		end      
+		end  
+    else
+        underground = false    
 	end      
 	for _,Player in pairs(Players:GetPlayers()) do      
 		if Player.Character and Player ~= LocalPlayer and Player.Character:FindFirstChild("HumanoidRootPart") and Player.Character.HumanoidRootPart:FindFirstChild("OldPosition") then      
@@ -6719,7 +6827,8 @@ mt.__namecall = function(self, ...)
 
 	return oldNamecall(self, unpack(args))      
 end      
-mt.__index = function(self, key)      
+local oldIndex
+oldIndex = hookmetamethod(game,"__index",function(self, key)      
 	local CallingScript = getcallingscript()      
 
 	if not checkcaller() and self == Viewmodels and LocalPlayer.Character ~= nil and LocalPlayer.Character:FindFirstChild("UpperTorso") then      
@@ -6748,7 +6857,7 @@ mt.__index = function(self, key)
 	end      
 
 	return oldIndex(self, key)      
-end      
+end)      
 
 if LocalPlayer.PlayerGui:FindFirstChild("Performance") then
 	local perf__ = LocalPlayer.PlayerGui.Performance.Perf      
@@ -7558,3 +7667,4 @@ for _,Player in pairs(Players:GetPlayers()) do
 		end      
 	end      
 end      
+CreateHitElement("Success!",Color3.new(0,1,0))
