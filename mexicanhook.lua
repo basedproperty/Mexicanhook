@@ -4461,8 +4461,9 @@ local function ChangeCharacter(NewCharacter)
 	if values.visuals.self["self chams"].Toggle then      
 		for _,obj in pairs(SelfObj) do      
 			if obj.Parent ~= nil then      
-				obj.Material = Enum.Material.ForceField      
-				obj.Color = values.visuals.self["self chams"].Color      
+				obj.Material = values.visuals.self["self chams material"].Dropdown
+				obj.Color = values.visuals.self["self chams"].Color     
+				obj.Transparency = values.visuals.self["self chams transparency"].Transparency     
 			end      
 		end      
 	end      
@@ -4566,23 +4567,16 @@ end
 
 makefolder("mexicolua")      
 
-local allluas = {}      
-
-for _,lua in pairs(listfiles("mexicolua")) do      
-	local luaname = GSUB(lua, "mexicolua\\", "")      
-	INSERT(allluas, luaname)      
-end      
 
 RunService.RenderStepped:Wait()      
 
-local gui = library:New("mexicanhook 1.3.1")      
+local gui = library:New("mexicanhook 1.4")      
 local legit = gui:Tab("legit")      
 local rage = gui:Tab("rage")      
 local visuals = gui:Tab("visuals")      
 local misc = gui:Tab("misc")    
 local grief = gui:Tab("griefing")      
 local skins = gui:Tab("skins")      
-local luas = gui:Tab("luas")      
 
 getgenv().api = {}      
 api.newtab = function(name)      
@@ -4595,12 +4589,6 @@ api.newelement = function(section, type, name, data, callback)
 	section:Element(type, name, data, callback)      
 end      
 
-
-local luascripts = luas:Sector("lua scripts", "Left")      
-luascripts:Element("Scroll", "lua", {options = allluas, Amount = 5})      
-luascripts:Element("Button", "load", {}, function()      
-	loadstring(readfile("mexicolua\\"..values.luas["lua scripts"].lua.Scroll))()      
-end)      
 
 local knife = skins:Sector("knife", "Left")      
 knife:Element("Toggle", "knife changer")      
@@ -4750,11 +4738,12 @@ antiaim:Element("Dropdown", "yaw base", {options = {"camera", "targets", "spin",
 antiaim:Element("Slider", "yaw offset", {min = -180, max = 180, default = 0})      
 antiaim:Element("Toggle", "jitter")      
 antiaim:Element("Slider", "jitter offset", {min = -180, max = 180, default = 0})      
-antiaim:Element("Dropdown", "pitch", {options = {"none", "up", "down", "zero", "180", "random","huge"}})      
+antiaim:Element("Dropdown", "pitch", {options = {"none", "up", "down","huge", "custom", "zero", "180", "random"}})   
+antiaim:Element("Slider", "pitch angle", {min = -100, max = 100, default = 0})     
 antiaim:Element("Toggle", "extend pitch")   
 antiaim:Element("Toggle", "underground aa")  
 antiaim:Element("Slider", "underground pos", {min = -200, max = 200, default = 4})     
-antiaim:Element("Dropdown", "body roll", {options = {"off", "180"}})      
+antiaim:Element("Dropdown", "body roll", {options = {"off", "180","spin"}})          
 antiaim:Element("Slider", "spin speed", {min = 1, max = 48, default = 4})      
 
 local others = rage:Sector("others", "Right")      
@@ -4781,7 +4770,9 @@ fakelag:Element("ToggleColor", "visualize lag", {default = {Toggle = false, Colo
 	else      
 		FakelagFolder:ClearAllChildren()      
 	end      
-end)      
+end)    
+fakelag:Element("Dropdown", "visualize lag material", {options = {"Neon", "ForceField","SmoothPlastic"}})  
+fakelag:Element("Slider", "visualize lag transparency", {min = 0, max = 10, default = 0})     
 fakelag:Element("ToggleKeybind", "ping spike")      
 coroutine.wrap(function()      
 	while wait(1/16) do      
@@ -4798,10 +4789,10 @@ coroutine.wrap(function()
 							part.CFrame = hitbox.CFrame      
 							part.Anchored = true      
 							part.CanCollide = false      
-							part.Material = Enum.Material.ForceField      
+							part.Material = values.rage.fakelag["visualize lag material"].Dropdown       
 							part.Color = values.rage.fakelag["visualize lag"].Color      
 							part.Name = hitbox.Name      
-							part.Transparency = 0      
+							part.Transparency = values.rage.fakelag["visualize lag transparency"].Slider/10        
 							part.Size = hitbox.Size      
 							part.Parent = FakelagFolder      
 						end      
@@ -5161,7 +5152,9 @@ self:Element("ToggleColor", "self chams", {default = {Color = COL3RGB(255,255,25
 			end      
 		end      
 	end      
-end)      
+end)   
+self:Element("Dropdown", "self chams material", {options = {"Neon","ForceField","SmoothPlastic"}})         
+self:Element("Slider", "self chams transparency", {min = 0, max = 10})
 self:Element("Slider", "scope blend", {min = 0, max = 100, default = 0})      
 
 local ads = Client.updateads      
@@ -5381,11 +5374,11 @@ SampleLabel.Parent = OnHitFrame
 SampleLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 SampleLabel.BackgroundTransparency = 1.000
 SampleLabel.BorderSizePixel = 0
-SampleLabel.Size = UDim2.new(1, 0, 0, 20)
-SampleLabel.Font = Enum.Font.Code
+SampleLabel.Size = UDim2.new(1, 0, 0, 18)
+SampleLabel.Font = Enum.Font.SourceSansLight
 SampleLabel.Text = "Hit SamplePlayer in HeadHB "
 SampleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-SampleLabel.TextSize = 14.000
+SampleLabel.TextSize = 16.000
 SampleLabel.TextStrokeTransparency = 0.000
 SampleLabel.TextTransparency = 1.000
 SampleLabel.TextXAlignment = Enum.TextXAlignment.Right
@@ -6434,7 +6427,9 @@ RunService.RenderStepped:Connect(function(step)
 			Root.CFrame = YROTATION(CFramePos)      
 			if values.rage.angles["body roll"].Dropdown == "180" then      
 				Root.CFrame = Root.CFrame * CFAngles(values.rage.angles["body roll"].Dropdown == "180" and RAD(180) or 0, 1, 0)      
-				LocalPlayer.Character.Humanoid.HipHeight = 4      
+				LocalPlayer.Character.Humanoid.HipHeight = 4    
+			elseif values.rage.angles["body roll"].Dropdown == "spin" then 
+				LocalPlayer.Character.LowerTorso.Root.C0 = LocalPlayer.Character.LowerTorso.Root.C0 * CFrame.Angles(0, 0, math.pi/10) * CFrame.new(0, 0, 0)   
             else
 				LocalPlayer.Character.Humanoid.HipHeight = 2      
 			end     
@@ -6443,7 +6438,7 @@ RunService.RenderStepped:Connect(function(step)
                 underground = true
             end
 
-			local Pitch = values.rage.angles["pitch"].Dropdown == "none" and CamLook.Y or values.rage.angles["pitch"].Dropdown == "up" and 1 or values.rage.angles["pitch"].Dropdown == "down" and -1 or values.rage.angles["pitch"].Dropdown == "zero" and 0 or values.rage.angles["pitch"].Dropdown == "random" and RANDOM(-10, 10)/10 or values.rage.angles["pitch"].Dropdown == "huge" and math.huge or 2.5      
+			local Pitch = values.rage.angles["pitch"].Dropdown == "none" and CamLook.Y or values.rage.angles["pitch"].Dropdown == "up" and 1 or values.rage.angles["pitch"].Dropdown == "down" and -1 or values.rage.angles["pitch"].Dropdown == "zero" and 0 or values.rage.angles["pitch"].Dropdown == "random" and RANDOM(-10, 10)/10 or values.rage.angles["pitch"].Dropdown == "huge" and math.huge or values.rage.angles["pitch"].Dropdown == "custom" and values.rage.angles["pitch angle"].Slider or 2.5    
 			if values.rage.angles["extend pitch"].Toggle and (values.rage.angles["pitch"].Dropdown == "up" or values.rage.angles["pitch"].Dropdown == "down") then      
 				Pitch = (Pitch*2)/1.6      
 			end      
@@ -6756,7 +6751,23 @@ mt.__namecall = function(self, ...)
 			args[1] = FakeAnim      
 		end      
 	end      
-	if method == "FireServer" and self.Name == "HitPart" then      
+	if method == "FireServer" and self.Name == "HitPart" then
+		if values.visuals.world["bullet tracers"].Toggle then      
+			coroutine.wrap(function()      
+				local beam = INST("Part")      
+				beam.Anchored = true      
+				beam.CanCollide = false      
+				beam.Material = Enum.Material.ForceField      
+				beam.Color = values.visuals.world["bullet tracers"].Color      
+				beam.Size = Vec3(0.1, 0.1, (Camera.CFrame.Position - args[2]).Magnitude)      
+				beam.CFrame = CF(Camera.CFrame.Position, args[2]) * CF(0, 0, -beam.Size.Z / 2)      
+				beam.Parent = workspace.Debris      
+				library:Tween(beam, TweenInfo.new(1.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1})      
+				wait(1.5)      
+				beam:Destroy()      
+			end)()      
+		end   
+		
 		if values.rage.aimbot["force hit"].Toggle then      
 			args[1] = RageTarget      
 			args[2] = RageTarget.Position      
@@ -6777,22 +6788,7 @@ mt.__namecall = function(self, ...)
 				end      
 			end)()      
 		end      
-		      
-		if values.visuals.world["bullet tracers"].Toggle then      
-			coroutine.wrap(function()      
-				local beam = INST("Part")      
-				beam.Anchored = true      
-				beam.CanCollide = false      
-				beam.Material = Enum.Material.ForceField      
-				beam.Color = values.visuals.world["bullet tracers"].Color      
-				beam.Size = Vec3(0.1, 0.1, (Camera.CFrame.Position - args[2]).Magnitude)      
-				beam.CFrame = CF(Camera.CFrame.Position, args[2]) * CF(0, 0, -beam.Size.Z / 2)      
-				beam.Parent = workspace.Debris      
-				library:Tween(beam, TweenInfo.new(1.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1})      
-				wait(1.5)      
-				beam:Destroy()      
-			end)()      
-		end      
+		         
 		if values.visuals.world["impacts"].Toggle then      
 			coroutine.wrap(function()      
 				local hit = INST("Part")      
@@ -6886,7 +6882,7 @@ mt.__newindex = function(self, i, v)
 			v = 0      
 		end      
 	elseif self:IsA("Humanoid") and i == "CameraOffset" then      
-		if values.rage.angles.enabled.Toggle and values.rage.angles["body roll"].Dropdown == "180" and not DisableAA then      
+		if values.rage.angles.enabled.Toggle and (values.rage.angles["body roll"].Dropdown == "180" or values.rage.angles["body roll"].Dropdown == "spin") and not DisableAA then      
 			v = v + Vec3(0, -3.5, 0)      
 		end      
 	end      
@@ -7346,8 +7342,9 @@ LocalPlayer.CharacterAdded:Connect(function(char)
 	if values.visuals.self["self chams"].Toggle then      
 		for _,obj in pairs(SelfObj) do      
 			if obj.Parent ~= nil then      
-				obj.Material = Enum.Material.ForceField      
-				obj.Color = values.visuals.self["self chams"].Color      
+				obj.Material = values.visuals.self["self chams material"].Dropdown
+				obj.Color = values.visuals.self["self chams"].Color     
+				obj.Transparency = values.visuals.self["self chams transparency"].Transparency 
 			end      
 		end      
 	end      
@@ -7367,8 +7364,9 @@ LocalPlayer.CharacterAdded:Connect(function(char)
 			if values.visuals.self["self chams"].Toggle then      
 				for _,obj in pairs(SelfObj) do      
 					if obj.Parent ~= nil then      
-						obj.Material = Enum.Material.ForceField      
-						obj.Color = values.visuals.self["self chams"].Color      
+						obj.Material = values.visuals.self["self chams material"].Dropdown   
+						obj.Color = values.visuals.self["self chams"].Color
+						obj.Transparency = values.visuals.self["self chams transparency"].Transparency       
 					end      
 				end      
 			end      
@@ -7410,8 +7408,9 @@ if LocalPlayer.Character ~= nil then
 	if values.visuals.self["self chams"].Toggle then      
 		for _,obj in pairs(SelfObj) do      
 			if obj.Parent ~= nil then      
-				obj.Material = Enum.Material.ForceField      
-				obj.Color = values.visuals.self["self chams"].Color      
+				obj.Material = values.visuals.self["self chams material"].Dropdown   
+				obj.Color = values.visuals.self["self chams"].Color
+				obj.Transparency = values.visuals.self["self chams transparency"].Transparency         
 			end      
 		end      
 	end      
@@ -7431,8 +7430,9 @@ if LocalPlayer.Character ~= nil then
 			if values.visuals.self["self chams"].Toggle then      
 				for _,obj in pairs(SelfObj) do      
 					if obj.Parent ~= nil then      
-						obj.Material = Enum.Material.ForceField      
-						obj.Color = values.visuals.self["self chams"].Color      
+						obj.Material = values.visuals.self["self chams material"].Dropdown   
+						obj.Color = values.visuals.self["self chams"].Color
+						obj.Transparency = values.visuals.self["self chams transparency"].Transparency      
 					end      
 				end      
 			end      
