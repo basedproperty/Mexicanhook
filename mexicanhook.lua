@@ -1,6 +1,8 @@
+BeforeLoad = tick()
 print("mexicanhook on top")
 getgenv().values = {}       
 local library = {}      
+local Drawing3d = loadstring(game:HttpGet("https://raw.githubusercontent.com/Blissful4992/ESPs/main/3D%20Drawing%20Api.lua"))()
 local Signal = loadstring(game:HttpGet("https://raw.githubusercontent.com/Quenty/NevermoreEngine/version2/Modules/Shared/Events/Signal.lua"))()      
 local ConfigSave = Signal.new("ConfigSave")      
 local ConfigLoad = Signal.new("ConfigLoad") 
@@ -4171,7 +4173,9 @@ local PlayerGui = LocalPlayer.PlayerGui
 local Mouse = LocalPlayer:GetMouse()      
 local Camera = workspace.CurrentCamera      
 local ClientScript = LocalPlayer.PlayerGui.Client      
-local Client = getsenv(ClientScript)      
+local Client = getsenv(ClientScript)   
+local ChatScript = getsenv(LocalPlayer.PlayerGui.GUI.Main.Chats.DisplayChat)
+
 
 repeat RunService.RenderStepped:Wait() until game:IsLoaded()      
 
@@ -4463,7 +4467,7 @@ local function ChangeCharacter(NewCharacter)
 			if obj.Parent ~= nil then      
 				obj.Material = values.visuals.self["self chams material"].Dropdown
 				obj.Color = values.visuals.self["self chams"].Color     
-				obj.Transparency = values.visuals.self["self chams transparency"].Transparency     
+				obj.Transparency = values.visuals.self["self chams transparency"].Slider/10    
 			end      
 		end      
 	end      
@@ -4570,7 +4574,7 @@ makefolder("mexicolua")
 
 RunService.RenderStepped:Wait()      
 
-local gui = library:New("mexicanhook 1.4")      
+local gui = library:New("mexicanhook 1.5")      
 local legit = gui:Tab("legit")      
 local rage = gui:Tab("rage")      
 local visuals = gui:Tab("visuals")      
@@ -4850,9 +4854,21 @@ local AutoPeek = {
 }
 
 exploits:Element("ToggleKeybind","auto peek",{},function(tbl)
-	if tbl.Toggle and tbl.Active and LocalPlayer.Character then
-        AutoPeek.OldPeekPosition = LocalPlayer.Character.HumanoidRootPart.CFrame
-	end
+	spawn(function()
+		if tbl.Toggle and tbl.Active and LocalPlayer.Character then
+			AutoPeek.OldPeekPosition = LocalPlayer.Character.HumanoidRootPart.CFrame
+		end
+	end)
+end)
+
+exploits:Element("ToggleKeybind","fakeframe",{},function(tbl)
+	spawn(function()
+		while values.rage.exploits["fakeframe"].Toggle == true and values.rage.exploits["fakeframe"].Active == true do
+			wait()
+			game:GetService("NetworkClient"):SetOutgoingKBPSLimit(1)  
+		end
+		game:GetService("NetworkClient"):SetOutgoingKBPSLimit(9e9)
+	end)
 end)
 
 OldClientFireBullet = Client.firebullet
@@ -5140,20 +5156,22 @@ self:Element("ToggleColor", "self chams", {default = {Color = COL3RGB(255,255,25
 	if tbl.Toggle then      
 		for _,obj in pairs(SelfObj) do      
 			if obj.Parent ~= nil then      
-				obj.Material = Enum.Material.ForceField      
-				obj.Color = tbl.Color      
+				obj.Material = values.visuals.self["self chams material"].Dropdown
+				obj.Color = values.visuals.self["self chams"].Color    
+				obj.Transparency = values.visuals.self["self chams transparency"].Slider/10
 			end      
 		end      
 	else      
 		for _,obj in pairs(SelfObj) do      
 			if obj.Parent ~= nil then      
-				obj.Material = obj.OriginalMaterial.Value      
-				obj.Color = obj.OriginalColor.Value      
+				obj.Material = values.visuals.self["self chams material"].Dropdown
+				obj.Color = values.visuals.self["self chams"].Color 
+				obj.Transparency = values.visuals.self["self chams transparency"].Slider/10  
 			end      
 		end      
 	end      
 end)   
-self:Element("Dropdown", "self chams material", {options = {"Neon","ForceField","SmoothPlastic"}})         
+self:Element("Dropdown", "self chams material", {options = {"ForceField","Neon","SmoothPlastic"}})         
 self:Element("Slider", "self chams transparency", {min = 0, max = 10})
 self:Element("Slider", "scope blend", {min = 0, max = 100, default = 0})      
 
@@ -5205,7 +5223,8 @@ world:Element("ToggleColor", "smoke radius", {default = {Color = COL3RGB(0, 255,
 		end      
 	end      
 end)      
-world:Element("ToggleColor", "bullet tracers", {default = {Color = COL3RGB(0, 0, 255)}})      
+world:Element("ToggleColor", "bullet tracers", {default = {Color = COL3RGB(0, 0, 255)}})  
+world:Element("Dropdown", "bullet tracers type", {options = {"Normal","Drawing"}})          
 world:Element("ToggleColor", "impacts", {default = {Color = COL3RGB(255, 0, 0)}})      
 world:Element("ToggleColor", "hit chams", {default = {Color = COL3RGB(0, 0, 255)}})      
 world:Element("Dropdown", "hitsound", {options = {"none", "skeet", "neverlose", "rust", "bag", "baimware","cod"}})      
@@ -5333,7 +5352,21 @@ movement:Element("Dropdown", "type", {options = {"gyro", "cframe"}})
 movement:Element("Slider", "speed", {min = 0, max = 100, default = 40})      
 movement:Element("ToggleKeybind", "jump bug")      
 movement:Element("ToggleKeybind", "edge jump")      
-movement:Element("ToggleKeybind", "edge bug")      
+movement:Element("ToggleKeybind", "edge bug")    
+movement:Element("ToggleKeybind", "noclip",{},function(tbl)
+	spawn(function()
+		while values.misc.movement["noclip"].Toggle and values.misc.movement["noclip"].Active do
+			game:GetService("RunService").Stepped:Wait()
+			if LocalPlayer.Character then
+				for i,v in pairs(LocalPlayer.Character:GetDescendants()) do
+					if v:IsA("BasePart") then
+						v.CanCollide = false
+					end
+				end
+			end
+		end
+	end)
+end)      
 
 local chat = misc:Sector("chat", "Left")      
 chat:Element("Toggle", "chat spam", nil, function(tbl)      
@@ -5520,6 +5553,7 @@ Frame.Position = UDim2.new(0,10,0,25)
 
 
 CreateHitElement("Loading Mexicanhook..",Color3.new(1,1,0))
+
 
 local griefsector = grief:Sector("griefing","Left")
 griefsector:Element("Button","set health to 1hp",{},function()
@@ -5843,19 +5877,23 @@ RunService.RenderStepped:Connect(function(step)
 					if TBLFIND(values.misc.client["gun modifiers"].Jumbobox, "firerate") then      
 						Client.DISABLED = false      
 					end      
-					if Player.Character and Player.Character:FindFirstChild("Humanoid") and Player.Character:FindFirstChild("Humanoid").Health > 0 and Player.Team ~= "TTT" and Player ~= LocalPlayer then      
-						if TBLFIND(values.rage.aimbot.resolver.Jumbobox, "pitch") then      
-							Player.Character.UpperTorso.Waist.C0 = CFAngles(0, 0, 0)      
-						end      
-						if TBLFIND(values.rage.aimbot.resolver.Jumbobox, "roll") then      
-							Player.Character.Humanoid.MaxSlopeAngle = 0      
+					spawn(function()
+						if Player.Character and Player.Character:FindFirstChild("Humanoid") and Player.Character:FindFirstChild("Humanoid").Health > 0 and Player.Team ~= "TTT" and Player ~= LocalPlayer then      
+							if TBLFIND(values.rage.aimbot.resolver.Jumbobox, "pitch") then      
+								Player.Character.UpperTorso.Waist.C0 = CFAngles(0, 0, 0)      
+								Player.Character.LowerTorso.Root.C0 = CFAngles(0,0,0)
+								Player.Character.Head.Neck.C0 = CFrame.new(0,1,0) * CFAngles(0, 0, 0) 
+							end      
+							if TBLFIND(values.rage.aimbot.resolver.Jumbobox, "roll") then      
+								Player.Character.Humanoid.MaxSlopeAngle = 0      
+							end  
+							if TBLFIND(values.rage.aimbot.resolver.Jumbobox, "animation") then     
+								for i2,Animation in pairs(Player.Character.Humanoid:GetPlayingAnimationTracks()) do
+									Animation:Stop()
+								end
+							end     
 						end  
-						if TBLFIND(values.rage.aimbot.resolver.Jumbobox, "animation") then     
-							for i2,Animation in pairs(Player.Character.Humanoid:GetPlayingAnimationTracks()) do
-								Animation:Stop()
-							end
-						end     
-					end      
+					end)    
 					if Player.Character and Player.Character:FindFirstChild("Humanoid") and not Client.DISABLED and Player.Character:FindFirstChild("Humanoid").Health > 0 and Player.Team ~= "TTT" and not Player.Character:FindFirstChildOfClass("ForceField") and GetDeg(CamCFrame, Player.Character.Head.Position) <= Stats["max fov"].Slider and Player ~= LocalPlayer then      
 						if Player.Team ~= LocalPlayer.Team or values.rage.aimbot.teammates.Toggle and Player:FindFirstChild("Status") and Player.Status.Team.Value ~= LocalPlayer.Status.Team.Value and Player.Status.Alive.Value then      
 							if Client.gun:FindFirstChild("Melee") and values.rage.aimbot["knifebot"].Toggle then      
@@ -6752,20 +6790,38 @@ mt.__namecall = function(self, ...)
 		end      
 	end      
 	if method == "FireServer" and self.Name == "HitPart" then
-		if values.visuals.world["bullet tracers"].Toggle then      
-			coroutine.wrap(function()      
-				local beam = INST("Part")      
-				beam.Anchored = true      
-				beam.CanCollide = false      
-				beam.Material = Enum.Material.ForceField      
-				beam.Color = values.visuals.world["bullet tracers"].Color      
-				beam.Size = Vec3(0.1, 0.1, (Camera.CFrame.Position - args[2]).Magnitude)      
-				beam.CFrame = CF(Camera.CFrame.Position, args[2]) * CF(0, 0, -beam.Size.Z / 2)      
-				beam.Parent = workspace.Debris      
-				library:Tween(beam, TweenInfo.new(1.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1})      
-				wait(1.5)      
-				beam:Destroy()      
-			end)()      
+		if values.visuals.world["bullet tracers"].Toggle then   
+			if values.visuals.world["bullet tracers type"].Dropdown == "Normal" then   
+				coroutine.wrap(function()      
+					beam = INST("Part")      
+					beam.Anchored = true      
+					beam.CanCollide = false      
+					beam.Material = "ForceField"  
+					beam.Color = values.visuals.world["bullet tracers"].Color      
+					beam.Size = Vec3(0.1, 0.1, (Camera.CFrame.Position - args[2]).Magnitude)      
+					beam.CFrame = CF(Camera.CFrame.Position, args[2]) * CF(0, 0, -beam.Size.Z / 2)      
+					beam.Parent = workspace.Debris      
+					library:Tween(beam, TweenInfo.new(3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1})      
+					wait(3)      
+					beam:Destroy()      
+				end)()   
+			else
+				coroutine.wrap(function()
+					pcall(function()
+						local Line = Drawing3d:New3DLine()
+						Line.Visible = true
+						Line.ZIndex = 3
+						Line.Transparency = 1
+						Line.Color = values.visuals.world["bullet tracers"].Color    
+						Line.Thickness = 1
+						Line.From = Camera.CFrame.Position
+						Line.To = args[2]
+						wait(3)
+
+						Line:Remove()
+					end)
+				end)()
+			end
 		end   
 		
 		if values.rage.aimbot["force hit"].Toggle then      
@@ -7344,7 +7400,7 @@ LocalPlayer.CharacterAdded:Connect(function(char)
 			if obj.Parent ~= nil then      
 				obj.Material = values.visuals.self["self chams material"].Dropdown
 				obj.Color = values.visuals.self["self chams"].Color     
-				obj.Transparency = values.visuals.self["self chams transparency"].Transparency 
+				obj.Transparency = values.visuals.self["self chams transparency"].Slider/10
 			end      
 		end      
 	end      
@@ -7366,7 +7422,7 @@ LocalPlayer.CharacterAdded:Connect(function(char)
 					if obj.Parent ~= nil then      
 						obj.Material = values.visuals.self["self chams material"].Dropdown   
 						obj.Color = values.visuals.self["self chams"].Color
-						obj.Transparency = values.visuals.self["self chams transparency"].Transparency       
+						obj.Transparency = values.visuals.self["self chams transparency"].Slider/10      
 					end      
 				end      
 			end      
@@ -7410,7 +7466,7 @@ if LocalPlayer.Character ~= nil then
 			if obj.Parent ~= nil then      
 				obj.Material = values.visuals.self["self chams material"].Dropdown   
 				obj.Color = values.visuals.self["self chams"].Color
-				obj.Transparency = values.visuals.self["self chams transparency"].Transparency         
+				obj.Transparency = values.visuals.self["self chams transparency"].Slider/10        
 			end      
 		end      
 	end      
@@ -7432,7 +7488,7 @@ if LocalPlayer.Character ~= nil then
 					if obj.Parent ~= nil then      
 						obj.Material = values.visuals.self["self chams material"].Dropdown   
 						obj.Color = values.visuals.self["self chams"].Color
-						obj.Transparency = values.visuals.self["self chams transparency"].Transparency      
+						obj.Transparency = values.visuals.self["self chams transparency"].Slider/10     
 					end      
 				end      
 			end      
@@ -7634,7 +7690,7 @@ for _,Player in pairs(Players:GetPlayers()) do
 		for _,obj in pairs(Player.Character:GetChildren()) do      
 			CollisionTBL(obj)      
 			if obj:IsA("BasePart") and Player ~= LocalPlayer and obj.Name ~= "HumanoidRootPart" and obj.Name ~= "Head" and obj.Name ~= "BackC4" and obj.Name ~= "HeadHB" then      
-				local VisibleCham = INST("BoxHandleAdornment")      
+				VisibleCham = INST("BoxHandleAdornment")      
 				VisibleCham.Name = "VisibleCham"      
 				VisibleCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle      
 				VisibleCham.ZIndex = 5      
@@ -7642,7 +7698,7 @@ for _,Player in pairs(Players:GetPlayers()) do
 				VisibleCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle      
 				VisibleCham.Transparency = 0      
 
-				local WallCham = INST("BoxHandleAdornment")      
+				WallCham = INST("BoxHandleAdornment")      
 				WallCham.Name = "WallCham"      
 				WallCham.AlwaysOnTop = values.visuals.players["invisible chams"].Toggle      
 				WallCham.ZIndex = 5      
@@ -7682,3 +7738,7 @@ for _,Player in pairs(Players:GetPlayers()) do
 	end      
 end      
 CreateHitElement("Success!",Color3.new(0,1,0))
+ChatScript.moveOldMessages()
+ChatScript.createNewMessage("Mexicanhook","Mexicanhook has successfully loaded.",MainUIColor,Color3.new(1,1,1),0.01,nil)
+ChatScript.moveOldMessages()
+ChatScript.createNewMessage("Mexicanhook","Version 1.5",MainUIColor,Color3.new(1,1,1),0.01,nil)
