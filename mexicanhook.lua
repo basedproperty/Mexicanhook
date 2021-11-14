@@ -4864,7 +4864,7 @@ end)
 exploits:Element("ToggleKeybind","fakeframe",{},function(tbl)
 	spawn(function()
 		while values.rage.exploits["fakeframe"].Toggle == true and values.rage.exploits["fakeframe"].Active == true do
-			wait(1.5)
+			wait(.5)
 			game:GetService("NetworkClient"):SetOutgoingKBPSLimit(1)  
 		end
 		game:GetService("NetworkClient"):SetOutgoingKBPSLimit(9e9)
