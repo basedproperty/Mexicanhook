@@ -4576,7 +4576,7 @@ makefolder("mexicolua")
 
 RunService.RenderStepped:Wait()      
 
-local gui = library:New("mexicanhook 1.5.2")      
+local gui = library:New("mexicanhook 1.6")      
 local legit = gui:Tab("legit")      
 local rage = gui:Tab("rage")      
 local visuals = gui:Tab("visuals")      
@@ -4816,7 +4816,8 @@ coroutine.wrap(function()
 	end      
 end)()       
 Peek = false
-local exploits = rage:Sector("exploits", "Left")      
+local exploits = rage:Sector("exploits", "Left")  
+exploits:Element("Slider", "damage multiplier", {min = 1, max = 5, default = 1})      
 exploits:Element("ToggleKeybind", "triple tap")      
 exploits:Element("ToggleKeybind", "kill all")     
 exploits:Element("Slider", "quick peek vertical pos", {min = -500, max = 500, default = 200})  
@@ -4872,6 +4873,7 @@ exploits:Element("ToggleKeybind","fakeframe",{},function(tbl)
 		
 	end)
 end)
+
 
 OldClientFireBullet = Client.firebullet
 Client.firebullet = function(...)
@@ -5930,7 +5932,7 @@ RunService.RenderStepped:Connect(function(step)
 										[3] = Client.gun.Name,      
 										[4] = 4096,      
 										[5] = LocalPlayer.Character.Gun,      
-										[8] = 1,      
+										[8] = values.rage.exploits["damage multiplier"].Slider,      
 										[9] = false,      
 										[10] = false,      
 										[11] = Vec3(),      
@@ -6030,7 +6032,7 @@ RunService.RenderStepped:Connect(function(step)
 															[3] = LocalPlayer.Character.EquippedTool.Value,      
 															[4] = 100,      
 															[5] = LocalPlayer.Character.Gun,      
-															[8] = 1,      
+															[8] =values.rage.exploits["damage multiplier"].Slider,      
 															[9] = false,      
 															[10] = false,      
 															[11] = Vec3(),      
@@ -6046,7 +6048,7 @@ RunService.RenderStepped:Connect(function(step)
 																[3] = LocalPlayer.Character.EquippedTool.Value,      
 																[4] = 100,      
 																[5] = LocalPlayer.Character.Gun,      
-																[8] = 1,      
+																[8] = values.rage.exploits["damage multiplier"].Slider,      
 																[9] = false,      
 																[10] = false,      
 																[11] = Vec3(),      
@@ -6061,7 +6063,7 @@ RunService.RenderStepped:Connect(function(step)
 																[3] = LocalPlayer.Character.EquippedTool.Value,      
 																[4] = 100,      
 																[5] = LocalPlayer.Character.Gun,      
-																[8] = 1,      
+																[8] = values.rage.exploits["damage multiplier"].Slider,      
 																[9] = false,      
 																[10] = false,      
 																[11] = Vec3(),      
@@ -6143,7 +6145,7 @@ RunService.RenderStepped:Connect(function(step)
 															[3] = LocalPlayer.Character.EquippedTool.Value,      
 															[4] = 100,      
 															[5] = LocalPlayer.Character.Gun,      
-															[8] = 1,      
+															[8] = values.rage.exploits["damage multiplier"].Slider,      
 															[9] = false,      
 															[10] = false,      
 															[11] = Vec3(),      
@@ -6158,7 +6160,7 @@ RunService.RenderStepped:Connect(function(step)
 															[3] = LocalPlayer.Character.EquippedTool.Value,      
 															[4] = 100,      
 															[5] = LocalPlayer.Character.Gun,      
-															[8] = 1,      
+															[8] = values.rage.exploits["damage multiplier"].Slider,      
 															[9] = false,      
 															[10] = false,      
 															[11] = Vec3(),      
@@ -6175,7 +6177,7 @@ RunService.RenderStepped:Connect(function(step)
 																[3] = LocalPlayer.Character.EquippedTool.Value,      
 																[4] = 100,      
 																[5] = LocalPlayer.Character.Gun,      
-																[8] = 1,      
+																[8] = values.rage.exploits["damage multiplier"].Slider,      
 																[9] = false,      
 																[10] = false,      
 																[11] = Vec3(),      
@@ -6190,7 +6192,7 @@ RunService.RenderStepped:Connect(function(step)
 																[3] = LocalPlayer.Character.EquippedTool.Value,      
 																[4] = 100,      
 																[5] = LocalPlayer.Character.Gun,      
-																[8] = 1,      
+																[8] = values.rage.exploits["damage multiplier"].Slider,      
 																[9] = false,      
 																[10] = false,      
 																[11] = Vec3(),      
@@ -6243,7 +6245,7 @@ RunService.RenderStepped:Connect(function(step)
 														[3] = LocalPlayer.Character.EquippedTool.Value,      
 														[4] = 100,      
 														[5] = LocalPlayer.Character.Gun,      
-														[8] = 1,      
+														[8] = values.rage.exploits["damage multiplier"].Slider,      
 														[9] = false,      
 														[10] = false,      
 														[11] = Vec3(),      
@@ -6258,7 +6260,7 @@ RunService.RenderStepped:Connect(function(step)
 														[3] = LocalPlayer.Character.EquippedTool.Value,      
 														[4] = 100,      
 														[5] = LocalPlayer.Character.Gun,      
-														[8] = 1,      
+														[8] = values.rage.exploits["damage multiplier"].Slider,      
 														[9] = false,      
 														[10] = false,      
 														[11] = Vec3(),      
@@ -6274,7 +6276,7 @@ RunService.RenderStepped:Connect(function(step)
 															[3] = LocalPlayer.Character.EquippedTool.Value,      
 															[4] = 100,      
 															[5] = LocalPlayer.Character.Gun,      
-															[8] = 1,      
+															[8] = values.rage.exploits["damage multiplier"].Slider,      
 															[9] = false,      
 															[10] = false,      
 															[11] = Vec3(),      
@@ -6289,7 +6291,7 @@ RunService.RenderStepped:Connect(function(step)
 															[3] = LocalPlayer.Character.EquippedTool.Value,      
 															[4] = 100,      
 															[5] = LocalPlayer.Character.Gun,      
-															[8] = 1,      
+															[8] = values.rage.exploits["damage multiplier"].Slider,      
 															[9] = false,      
 															[10] = false,      
 															[11] = Vec3(),      
@@ -7743,4 +7745,4 @@ CreateHitElement("Success!",Color3.new(0,1,0))
 ChatScript.moveOldMessages()
 ChatScript.createNewMessage("Mexicanhook","Mexicanhook has successfully loaded.",MainUIColor,Color3.new(1,1,1),0.01,nil)
 ChatScript.moveOldMessages()
-ChatScript.createNewMessage("Mexicanhook","Version 1.5.2",MainUIColor,Color3.new(1,1,1),0.01,nil)
+ChatScript.createNewMessage("Mexicanhook","Version 1.6",MainUIColor,Color3.new(1,1,1),0.01,nil)
