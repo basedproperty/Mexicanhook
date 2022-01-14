@@ -4576,7 +4576,7 @@ makefolder("mexicolua")
 
 RunService.RenderStepped:Wait()      
 
-local gui = library:New("mexicanhook 1.6")      
+local gui = library:New("mexicanhook 1.6.1")      
 local legit = gui:Tab("legit")      
 local rage = gui:Tab("rage")      
 local visuals = gui:Tab("visuals")      
@@ -4806,7 +4806,7 @@ coroutine.wrap(function()
 				end      
 			else      
 				if values.rage.fakelag.enabled.Toggle then      
-					game:GetService("NetworkClient"):SetOutgoingKBPSLimit(1)      
+					game:GetService("NetworkClient"):SetOutgoingKBPSLimit(0.5)      
 				end      
 			end      
 		else      
@@ -4868,7 +4868,7 @@ exploits:Element("ToggleKeybind","fakeframe",{},function(tbl)
 	spawn(function()
 		while values.rage.exploits["fakeframe"].Toggle == true and values.rage.exploits["fakeframe"].Active == true do
 			wait()
-			game:GetService("NetworkClient"):SetOutgoingKBPSLimit(1/16)  
+			game:GetService("NetworkClient"):SetOutgoingKBPSLimit(0.5)  
 		end
 		
 	end)
@@ -7745,4 +7745,4 @@ CreateHitElement("Success!",Color3.new(0,1,0))
 ChatScript.moveOldMessages()
 ChatScript.createNewMessage("Mexicanhook","Mexicanhook has successfully loaded.",MainUIColor,Color3.new(1,1,1),0.01,nil)
 ChatScript.moveOldMessages()
-ChatScript.createNewMessage("Mexicanhook","Version 1.6",MainUIColor,Color3.new(1,1,1),0.01,nil)
+ChatScript.createNewMessage("Mexicanhook","Version 1.6.1",MainUIColor,Color3.new(1,1,1),0.01,nil)
